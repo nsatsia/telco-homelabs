@@ -5,9 +5,9 @@ metadata:
   name: infraenv-core-ocptest-lab
   namespace: assisted-installer
 spec:
-  agentLabelSelector:
-    matchLabels:
-      telco-core: core-ocptest-lab
+  #agentLabelSelector:
+  #  matchLabels:
+  #    telco-core: core-ocptest-lab
   additionalNTPSources:
     - ntp.iinet.net
   clusterRef:
