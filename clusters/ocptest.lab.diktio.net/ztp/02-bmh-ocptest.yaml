@@ -1,0 +1,148 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-master1-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-master2-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-master3-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-worker1-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-worker2-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: master1-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    # InfraEnv to use
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    bmac.agent-install.openshift.io/role: master
+    inspect.metal3.io: disabled
+spec:
+  online: true
+  bootMACAddress: 52:54:00:e9:0e:fd
+  automatedCleaningMode: disabled
+  bmc:
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/8067347a-8211-4970-9465-1ade2a878b3c
+    credentialsName: bmc-master1-ocptest-lab
+    disableCertificateVerification: True
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: master2-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/role: master
+spec:
+  online: true
+  bootMACAddress: 52:54:00:96:aa:61
+  automatedCleaningMode: disabled
+  bmc:
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/bb248ca6-471d-4c26-98d3-ff2efab2acc7
+    credentialsName: bmc-master2-ocptest-lab
+    disableCertificateVerification: True
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: master3-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/role: master
+spec:
+  online: true
+  bootMACAddress: 52:54:00:65:65:56
+  automatedCleaningMode: disabled
+  bmc:
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/42e05747-5cc7-4a8f-b3c1-2ecf57382acb
+    credentialsName: bmc-master3-ocptest-lab
+    disableCertificateVerification: True
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: worker1-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/role: worker
+spec:
+  online: true
+  bootMACAddress: 52:54:00:46:8a:bf
+  automatedCleaningMode: disabled
+  bmc:
+    #address: idrac-virtualmedia://172.28.11.35/redfish/v1/Systems/System.Embedded.1
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/560c16d7-5c25-4662-ab4c-328f390026a9
+    credentialsName: bmc-worker1-ocptest-lab
+    disableCertificateVerification: True
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: worker2-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/role: worker
+spec:
+  online: true
+  bootMACAddress: 52:54:00:33:3e:ea
+  automatedCleaningMode: disabled
+  bmc:
+    #address: idrac-virtualmedia://172.28.11.36/redfish/v1/Systems/System.Embedded.1
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/09b858c7-152c-43b8-b076-64d8361d44be
+    credentialsName: bmc-worker2-ocptest-lab
+    disableCertificateVerification: True

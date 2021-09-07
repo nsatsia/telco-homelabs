@@ -1,0 +1,220 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-master1-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    cluster-name: ocptest-nmstate
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.19.129.23
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '150'
+          slaves:
+          - enp1s0
+          #- enp2s0
+      - name: enp2s0
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 192.19.128.2
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 192.19.129.254
+          next-hop-interface: bond0
+  interfaces:
+    - name: "enp1s0"
+      macAddress: 52:54:00:e9:0e:fd
+    - name: "enp2s0"
+      macAddress: 52:54:01:e9:0e:fd
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-master2-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    cluster-name: ocptest-nmstate
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.19.129.24
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '150'
+          slaves:
+          - enp1s0
+          #- enp2s0
+      - name: enp2s0
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 192.19.128.2
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 192.19.129.254
+          next-hop-interface: bond0
+  interfaces:
+    - name: "enp1s0"
+      macAddress: 52:54:00:96:aa:61
+    - name: "enp2s0"
+      macAddress: 52:54:01:96:aa:61
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-master3-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    cluster-name: ocptest-nmstate
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.19.129.25
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '150'
+          slaves:
+          - enp1s0
+          #- enp2s0
+      - name: enp2s0
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 192.19.128.2
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 192.19.129.254
+          next-hop-interface: bond0
+  interfaces:
+    - name: "enp1s0"
+      macAddress: 52:54:00:65:65:56
+    - name: "enp2s0"
+      macAddress: 52:54:01:65:65:56
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-worker1-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    cluster-name: ocptest-nmstate
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.19.129.26
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '100'
+          slaves:
+          - enp1s0
+          #- enp2s0
+      - name: enp2s0
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 192.19.128.2
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 192.19.129.254
+          next-hop-interface: bond0
+  interfaces:
+    - name: "enp1s0"
+      macAddress: 52:54:00:46:8a:bf
+    - name: "enp2s0"
+      macAddress: 52:54:01:46:8a:bf
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-worker2-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    cluster-name: ocptest-nmstate
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.19.129.27
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '100'
+          slaves:
+          - enp1s1
+          #- enp2s0
+      - name: enp2s0
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 192.19.128.2
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 192.19.129.254
+          next-hop-interface: bond0
+  interfaces:
+    - name: "enp1s0"
+      macAddress: 52:54:00:33:3e:ea
+    - name: "enp2s0"
+      macAddress: 52:54:01:33:3e:ea

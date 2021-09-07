@@ -1,0 +1,28 @@
+---
+# This is equivalent to a base common profile
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: aci-ocptest-lab
+  namespace: assisted-installer
+  annotations:
+    agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
+spec:
+  apiVIP: 192.19.129.21
+  ingressVIP: 192.19.129.22
+  clusterDeploymentRef:
+    name: cluster-ocptest-lab
+  imageSetRef:
+    name: openshift-v4.8.5-mirror
+#  manifestsConfigMapRef:
+#    name: cm-overrides-ran-skylark-cars-lab
+  networking:
+    clusterNetwork:
+      - cidr: "10.128.0.0/14"
+        hostPrefix: 23
+    serviceNetwork:
+      - "172.30.0.0/16"
+  provisionRequirements:
+    controlPlaneAgents: 3
+    workerAgents: 2
+  sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'

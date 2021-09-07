@@ -1,0 +1,17 @@
+---
+# This ZTP has dependency on a management cluster
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "10"
+
+commonLabels:
+  telco-gitops/ztp: combined-ran
+
+resources:
+  - 01-agent-ocptest.yaml
+  - 01-cluster-ocptest.yaml
+  - 01-infraenv-ocptest.yaml
+  - 01-nmstate-ocptest.yaml
+  - 02-bmh-ocptest.yaml
