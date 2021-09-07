@@ -31,7 +31,7 @@ spec:
         state: down
         mtu: 8996
         ipv4:
-          enabled: true
+          enabled: false
           dhcp: false
     dns-resolver:
       config:
@@ -80,7 +80,7 @@ spec:
         state: down
         mtu: 8996
         ipv4:
-          enabled: true
+          enabled: false
           dhcp: false
     dns-resolver:
       config:
@@ -129,7 +129,7 @@ spec:
         state: down
         mtu: 8996
         ipv4:
-          enabled: true
+          enabled: false
           dhcp: false
     dns-resolver:
       config:
@@ -178,7 +178,7 @@ spec:
         state: down
         mtu: 8996
         ipv4:
-          enabled: true
+          enabled: false
           dhcp: false
     dns-resolver:
       config:
@@ -227,7 +227,7 @@ spec:
         state: down
         mtu: 8996
         ipv4:
-          enabled: true
+          enabled: false
           dhcp: false
     dns-resolver:
       config:
