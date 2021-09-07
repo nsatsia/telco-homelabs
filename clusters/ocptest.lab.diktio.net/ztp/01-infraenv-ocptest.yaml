@@ -5,6 +5,9 @@ metadata:
   name: infraenv-core-ocptest-lab
   namespace: assisted-installer
 spec:
+  agentLabelSelector:
+    matchLabels:
+      telco-core: core-ocptest-lab
   additionalNTPSources:
     - ntp.iinet.net
   clusterRef:
@@ -12,9 +15,6 @@ spec:
     namespace: assisted-installer
   ## (optional pub key)
   sshAuthorizedKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'
-  agentLabelSelector:
-    matchLabels:
-      telco-core: core-ocptest-lab
   pullSecretRef:
     name: pull-secret
   # proxy:
