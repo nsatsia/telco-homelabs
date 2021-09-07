@@ -18,6 +18,7 @@ spec:
             - ip: 192.19.129.23
               prefix-length: 24
           dhcp: false
+          mtu: 8996
         link-aggregation:
           mode: active-backup
           options:
@@ -31,6 +32,7 @@ spec:
         ipv4:
           enabled: true
           dhcp: false
+          mtu: 8996
     dns-resolver:
       config:
         server:
@@ -65,6 +67,7 @@ spec:
             - ip: 192.19.129.24
               prefix-length: 24
           dhcp: false
+          mtu: 8996
         link-aggregation:
           mode: active-backup
           options:
@@ -78,6 +81,7 @@ spec:
         ipv4:
           enabled: true
           dhcp: false
+          mtu: 8996
     dns-resolver:
       config:
         server:
@@ -112,6 +116,7 @@ spec:
             - ip: 192.19.129.25
               prefix-length: 24
           dhcp: false
+          mtu: 8996
         link-aggregation:
           mode: active-backup
           options:
@@ -125,6 +130,7 @@ spec:
         ipv4:
           enabled: true
           dhcp: false
+          mtu: 8996
     dns-resolver:
       config:
         server:
@@ -159,6 +165,7 @@ spec:
             - ip: 192.19.129.26
               prefix-length: 24
           dhcp: false
+          mtu: 8996
         link-aggregation:
           mode: active-backup
           options:
@@ -172,6 +179,7 @@ spec:
         ipv4:
           enabled: true
           dhcp: false
+          mtu: 8996
     dns-resolver:
       config:
         server:
@@ -206,6 +214,7 @@ spec:
             - ip: 192.19.129.27
               prefix-length: 24
           dhcp: false
+          mtu: 8996
         link-aggregation:
           mode: active-backup
           options:
@@ -219,6 +228,7 @@ spec:
         ipv4:
           enabled: true
           dhcp: false
+          mtu: 8996
     dns-resolver:
       config:
         server:
