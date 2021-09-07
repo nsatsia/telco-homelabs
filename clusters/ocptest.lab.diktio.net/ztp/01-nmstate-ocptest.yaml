@@ -28,6 +28,9 @@ spec:
       - name: enp2s0
         type: ethernet
         state: down
+        ipv4:
+          enabled: true
+          dhcp: false
     dns-resolver:
       config:
         server:
@@ -72,6 +75,9 @@ spec:
       - name: enp2s0
         type: ethernet
         state: down
+        ipv4:
+          enabled: true
+          dhcp: false
     dns-resolver:
       config:
         server:
@@ -116,6 +122,9 @@ spec:
       - name: enp2s0
         type: ethernet
         state: down
+        ipv4:
+          enabled: true
+          dhcp: false
     dns-resolver:
       config:
         server:
@@ -160,6 +169,9 @@ spec:
       - name: enp2s0
         type: ethernet
         state: down
+        ipv4:
+          enabled: true
+          dhcp: false
     dns-resolver:
       config:
         server:
@@ -204,6 +216,9 @@ spec:
       - name: enp2s0
         type: ethernet
         state: down
+        ipv4:
+          enabled: true
+          dhcp: false
     dns-resolver:
       config:
         server:
