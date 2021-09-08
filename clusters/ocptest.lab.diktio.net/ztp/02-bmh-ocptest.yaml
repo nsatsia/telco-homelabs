@@ -67,7 +67,7 @@ spec:
   automatedCleaningMode: disabled
   hardwareProfile: default
   bmc:
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/8067347a-8211-4970-9465-1ade2a878b3c
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/fca82a04-b29b-4c3b-a35b-505426ece8cd
     credentialsName: bmc-master1-ocptest-lab
     disableCertificateVerification: True
 ---
@@ -88,7 +88,7 @@ spec:
   automatedCleaningMode: disabled
   hardwareProfile: default
   bmc:
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/bb248ca6-471d-4c26-98d3-ff2efab2acc7
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/b7f25171-79f0-4b62-abd7-e2dcf3f8e26c
     credentialsName: bmc-master2-ocptest-lab
     disableCertificateVerification: True
 ---
@@ -109,7 +109,7 @@ spec:
   automatedCleaningMode: disabled
   hardwareProfile: default
   bmc:
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/42e05747-5cc7-4a8f-b3c1-2ecf57382acb
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/e76d7a37-3d66-448a-b1a9-bdf15ea5d70b
     credentialsName: bmc-master3-ocptest-lab
     disableCertificateVerification: True
 ---
@@ -131,7 +131,7 @@ spec:
   hardwareProfile: default
   bmc:
     #address: idrac-virtualmedia://172.28.11.35/redfish/v1/Systems/System.Embedded.1
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/560c16d7-5c25-4662-ab4c-328f390026a9
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/703b2501-d974-459f-92c6-4b42642ccb24
     credentialsName: bmc-worker1-ocptest-lab
     disableCertificateVerification: True
 ---
@@ -153,6 +153,6 @@ spec:
   hardwareProfile: default
   bmc:
     #address: idrac-virtualmedia://172.28.11.36/redfish/v1/Systems/System.Embedded.1
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/09b858c7-152c-43b8-b076-64d8361d44be
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/f39e30d4-76d2-444e-bc48-d349edbaa308
     credentialsName: bmc-worker2-ocptest-lab
     disableCertificateVerification: True
