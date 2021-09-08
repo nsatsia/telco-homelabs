@@ -11,7 +11,7 @@ spec:
   apiVIP: 192.19.129.21
   ingressVIP: 192.19.129.22
   clusterDeploymentRef:
-    name: aci-ocptest-lab
+    name: cluster-ocptest-lab
   imageSetRef:
     name: openshift-v4.8.5-mirror
 #  manifestsConfigMapRef:
