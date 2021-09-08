@@ -64,7 +64,7 @@ metadata:
 spec:
   online: true
   bootMACAddress: 52:54:00:e9:0e:fd
-  automatedCleaningMode: disabled
+  automatedCleaningMode: metadata
   hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/f84f2702-b86f-4561-8c3a-da6780c80d53
@@ -85,7 +85,7 @@ metadata:
 spec:
   online: true
   bootMACAddress: 52:54:00:96:aa:61
-  automatedCleaningMode: disabled
+  automatedCleaningMode: metadata
   hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/bc7b9994-6b56-473d-9af3-f30214cd97ca
@@ -106,7 +106,7 @@ metadata:
 spec:
   online: true
   bootMACAddress: 52:54:00:65:65:56
-  automatedCleaningMode: disabled
+  automatedCleaningMode: metadata
   hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/648cc9ec-fb18-4ab6-9c05-6feb63a76403
@@ -127,7 +127,7 @@ metadata:
 spec:
   online: true
   bootMACAddress: 52:54:00:46:8a:bf
-  automatedCleaningMode: disabled
+  automatedCleaningMode: metadata
   hardwareProfile: libvirt
   bmc:
     #address: idrac-virtualmedia://172.28.11.35/redfish/v1/Systems/System.Embedded.1
@@ -149,7 +149,7 @@ metadata:
 spec:
   online: true
   bootMACAddress: 52:54:00:33:3e:ea
-  automatedCleaningMode: disabled
+  automatedCleaningMode: metadata
   hardwareProfile: libvirt
   bmc:
     #address: idrac-virtualmedia://172.28.11.36/redfish/v1/Systems/System.Embedded.1
