@@ -60,6 +60,7 @@ metadata:
   annotations:
     bmac.agent-install.openshift.io/role: master
     inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
 spec:
   online: true
   bootMACAddress: 52:54:00:e9:0e:fd
@@ -79,6 +80,7 @@ metadata:
   annotations:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/role: master
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
 spec:
   online: true
   bootMACAddress: 52:54:00:96:aa:61
@@ -98,6 +100,7 @@ metadata:
   annotations:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/role: master
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
 spec:
   online: true
   bootMACAddress: 52:54:00:65:65:56
@@ -117,6 +120,7 @@ metadata:
   annotations:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/role: worker
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
 spec:
   online: true
   bootMACAddress: 52:54:00:46:8a:bf
@@ -137,6 +141,7 @@ metadata:
   annotations:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/role: worker
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
 spec:
   online: true
   bootMACAddress: 52:54:00:33:3e:ea
