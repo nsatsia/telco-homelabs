@@ -65,7 +65,7 @@ spec:
   online: true
   bootMACAddress: 52:54:00:e9:0e:fd
   automatedCleaningMode: disabled
-  hardwareProfile: default
+  hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/fca82a04-b29b-4c3b-a35b-505426ece8cd
     credentialsName: bmc-master1-ocptest-lab
@@ -86,7 +86,7 @@ spec:
   online: true
   bootMACAddress: 52:54:00:96:aa:61
   automatedCleaningMode: disabled
-  hardwareProfile: default
+  hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/b7f25171-79f0-4b62-abd7-e2dcf3f8e26c
     credentialsName: bmc-master2-ocptest-lab
@@ -107,7 +107,7 @@ spec:
   online: true
   bootMACAddress: 52:54:00:65:65:56
   automatedCleaningMode: disabled
-  hardwareProfile: default
+  hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/e76d7a37-3d66-448a-b1a9-bdf15ea5d70b
     credentialsName: bmc-master3-ocptest-lab
@@ -128,7 +128,7 @@ spec:
   online: true
   bootMACAddress: 52:54:00:46:8a:bf
   automatedCleaningMode: disabled
-  hardwareProfile: default
+  hardwareProfile: libvirt
   bmc:
     #address: idrac-virtualmedia://172.28.11.35/redfish/v1/Systems/System.Embedded.1
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/703b2501-d974-459f-92c6-4b42642ccb24
@@ -150,7 +150,7 @@ spec:
   online: true
   bootMACAddress: 52:54:00:33:3e:ea
   automatedCleaningMode: disabled
-  hardwareProfile: default
+  hardwareProfile: libvirt
   bmc:
     #address: idrac-virtualmedia://172.28.11.36/redfish/v1/Systems/System.Embedded.1
     address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/f39e30d4-76d2-444e-bc48-d349edbaa308
