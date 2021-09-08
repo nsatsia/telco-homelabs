@@ -5,7 +5,7 @@ metadata:
   name: nmstate-master1
   namespace: assisted-installer
   labels:
-    nmstate-sno-label: test-nmstate
+    nmstate-sno-label: ocptest-nmstate
 spec:
   config:
     interfaces:
@@ -33,7 +33,7 @@ metadata:
   name: nmstate-master2
   namespace: assisted-installer
   labels:
-    nmstate-sno-label: test-nmstate
+    nmstate-sno-label: ocptest-nmstate
 spec:
   config:
     interfaces:
@@ -61,7 +61,7 @@ metadata:
   name: nmstate-master3
   namespace: assisted-installer
   labels:
-    nmstate-sno-label: test-nmstate
+    nmstate-sno-label: ocptest-nmstate
 spec:
   config:
     interfaces:
@@ -89,7 +89,7 @@ metadata:
   name: nmstate-worker1
   namespace: assisted-installer
   labels:
-    nmstate-sno-label: test-nmstate
+    nmstate-sno-label: ocptest-nmstate
 spec:
   config:
     interfaces:
@@ -117,7 +117,7 @@ metadata:
   name: nmstate-worker2
   namespace: assisted-installer
   labels:
-    nmstate-sno-label: test-nmstate
+    nmstate-sno-label: ocptest-nmstate
 spec:
   config:
     interfaces:
