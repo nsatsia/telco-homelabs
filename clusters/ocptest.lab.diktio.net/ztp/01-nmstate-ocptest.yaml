@@ -21,18 +21,18 @@ spec:
           dhcp: false
         link-aggregation:
           mode: active-backup
-#          options:
-#            miimon: '150'
+          options:
+            miimon: '150'
           slaves:
           - enp1s0
-          - enp2s0
-#      - name: enp2s0
-#        type: ethernet
-#        state: down
-#        mtu: 8996
-#        ipv4:
-#          enabled: false
-#          dhcp: false
+          # - enp2s0
+      - name: enp2s0
+        type: ethernet
+        state: down
+        mtu: 8996
+        ipv4:
+          enabled: false
+          dhcp: false
     dns-resolver:
       config:
         server:
@@ -74,7 +74,7 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0
-          #- enp2s0
+          # - enp2s0
       - name: enp2s0
         type: ethernet
         state: down
@@ -169,7 +169,7 @@ spec:
         link-aggregation:
           mode: active-backup
           options:
-            miimon: '100'
+            miimon: '150'
           slaves:
           - enp1s0
           #- enp2s0
@@ -218,7 +218,7 @@ spec:
         link-aggregation:
           mode: active-backup
           options:
-            miimon: '100'
+            miimon: '150'
           slaves:
           - enp1s1
           #- enp2s0
