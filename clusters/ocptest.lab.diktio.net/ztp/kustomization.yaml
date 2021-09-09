@@ -14,7 +14,7 @@ resources:
   - 01-agent-ocptest.yaml
   - 01-cluster-ocptest.yaml
   - 01-infraenv-ocptest.yaml
-#  - 01-nmstate-ocptest.yaml
-  - 01-nmstate-ocptest-dhcp.yaml
+  - 01-nmstate-ocptest.yaml
+#  - 01-nmstate-ocptest-dhcp.yaml
 #  - 02-bmh-ocptest.yaml
   - 02-bmh-ocptest-3m.yaml
