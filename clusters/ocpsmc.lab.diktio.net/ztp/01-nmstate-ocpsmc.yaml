@@ -15,10 +15,10 @@ spec:
         mtu: 8996
         ipv4:
           enabled: true
-          address:
-            - ip: 192.19.129.43
-              prefix-length: 24
-          dhcp: false
+#          address:
+#            - ip: 192.19.129.43
+#              prefix-length: 24
+          dhcp: true
         link-aggregation:
           mode: active-backup
           options:
@@ -90,10 +90,10 @@ spec:
         mtu: 8996
         ipv4:
           enabled: true
-          address:
-            - ip: 192.19.129.44
-              prefix-length: 24
-          dhcp: false
+#          address:
+#            - ip: 192.19.129.44
+#              prefix-length: 24
+          dhcp: true
         link-aggregation:
           mode: active-backup
           options:
@@ -165,10 +165,10 @@ spec:
         mtu: 8996
         ipv4:
           enabled: true
-          address:
-            - ip: 192.19.129.45
-              prefix-length: 24
-          dhcp: false
+#          address:
+#            - ip: 192.19.129.45
+#              prefix-length: 24
+          dhcp: true
         link-aggregation:
           mode: active-backup
           options:
