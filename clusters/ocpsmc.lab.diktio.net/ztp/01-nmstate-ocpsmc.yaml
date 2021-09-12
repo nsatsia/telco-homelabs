@@ -57,11 +57,11 @@ spec:
       config:
         server:
           - 192.19.128.2
-    routes:
-      config:
-        - destination: 0.0.0.0/0
-          next-hop-address: 192.19.129.254
-          next-hop-interface: bond0
+#    routes:
+#      config:
+#        - destination: 0.0.0.0/0
+#          next-hop-address: 192.19.129.254
+#          next-hop-interface: bond0
   interfaces:
     - name: eth0
       macAddress: b0:3a:f2:b6:05:9f
@@ -132,11 +132,11 @@ spec:
       config:
         server:
           - 192.19.128.2
-    routes:
-      config:
-        - destination: 0.0.0.0/0
-          next-hop-address: 192.19.129.254
-          next-hop-interface: bond0
+#    routes:
+#      config:
+#        - destination: 0.0.0.0/0
+#          next-hop-address: 192.19.129.254
+#          next-hop-interface: bond0
   interfaces:
     - name: eth0
       macAddress: b0:3a:f2:b6:05:9f
@@ -207,11 +207,11 @@ spec:
       config:
         server:
           - 192.19.128.2
-    routes:
-      config:
-        - destination: 0.0.0.0/0
-          next-hop-address: 192.19.129.254
-          next-hop-interface: bond0
+#    routes:
+#      config:
+#        - destination: 0.0.0.0/0
+#          next-hop-address: 192.19.129.254
+#          next-hop-interface: bond0
   interfaces:
     - name: eth0
       macAddress: b0:3a:f2:b6:05:9f
