@@ -1,0 +1,156 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-master1
+  namespace: assisted-installer
+  labels:
+    nmstate-sno-label: ocpsmc-nmstate
+spec:
+  config:
+    interfaces:
+      - name: eth0
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: eno1
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: eno2
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: enp1s0f0
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          dhcp: true
+      - name: enp1s0f1
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+  interfaces:
+    - name: eth0
+      macAddress: b0:3a:f2:b6:05:9f
+    - name: eno1
+      macAddress: 3c:ec:ef:2d:05:66
+    - name: eno2
+      macAddress: 3c:ec:ef:30:40:e0
+    - name: enp1s0f0
+      macAddress: 40:a6:b7:3c:f6:20
+    - name: enp1s0f1
+      macAddress: 40:a6:b7:3c:f6:21
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-master2
+  namespace: assisted-installer
+  labels:
+    nmstate-sno-label: ocpsmc-nmstate
+spec:
+  config:
+    interfaces:
+      - name: eth0
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: eno1
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: eno2
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: enp1s0f0
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          dhcp: true
+      - name: enp1s0f1
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+  interfaces:
+    - name: eth0
+      macAddress: b0:3a:f2:b6:05:9f
+    - name: eno1
+      macAddress: 3c:ec:ef:2d:84:07
+    - name: eno2
+      macAddress: 3c:ec:ef:30:7a:b4
+    - name: enp1s0f0
+      macAddress: 40:a6:b7:15:f4:4c
+    - name: enp1s0f1
+      macAddress: 40:a6:b7:15:f4:4d
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-master3
+  namespace: assisted-installer
+  labels:
+    nmstate-sno-label: ocpsmc-nmstate
+spec:
+  config:
+    interfaces:
+      - name: eth0
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: eno1
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: eno2
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: enp1s0f0
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          dhcp: true
+      - name: enp1s0f1
+        type: ethernet
+        state: down
+        ipv4:
+          enabled: false
+          dhcp: false
+  interfaces:
+    - name: eth0
+      macAddress: b0:3a:f2:b6:05:9f
+    - name: eno1
+      macAddress: 3c:ec:ef:2d:05:bc
+    - name: eno2
+      macAddress: 3c:ec:ef:30:41:36
+    - name: enp1s0f0
+      macAddress: 3c:fd:fe:35:65:80
+    - name: enp1s0f1
+      macAddress: 3c:fd:fe:35:65:82
