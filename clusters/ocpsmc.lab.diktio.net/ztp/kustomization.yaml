@@ -14,7 +14,7 @@ resources:
   - 01-agent-ocpsmc.yaml
   - 01-cluster-ocpsmc.yaml
   - 01-infraenv-ocpsmc.yaml
-  - 01-nmstate-ocpsmc.yaml
-#  - 01-nmstate-ocpsmc-dhcp.yaml
+#  - 01-nmstate-ocpsmc.yaml
+  - 01-nmstate-ocpsmc-dhcp.yaml
 #  - 02-bmh-ocpsmc.yaml
 #  - 02-bmh-ocpsmc-3m.yaml
