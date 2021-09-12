@@ -141,13 +141,13 @@ spec:
     - name: eth0
       macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
-      macAddress: 3c:ec:ef:2d:84:07
+      macAddress: 3c:ec:ef:2d:05:bc
     - name: eno2
-      macAddress: 3c:ec:ef:30:7a:b4
+      macAddress: 3c:ec:ef:30:41:36
     - name: enp1s0f0
-      macAddress: 40:a6:b7:15:f4:4c
+      macAddress: 3c:fd:fe:35:65:80
     - name: enp1s0f1
-      macAddress: 40:a6:b7:15:f4:4d
+      macAddress: 3c:fd:fe:35:65:82
 ---
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
@@ -216,10 +216,10 @@ spec:
     - name: eth0
       macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
-      macAddress: 3c:ec:ef:2d:05:bc
+      macAddress: 3c:ec:ef:2d:84:07
     - name: eno2
-      macAddress: 3c:ec:ef:30:41:36
+      macAddress: 3c:ec:ef:30:7a:b4
     - name: enp1s0f0
-      macAddress: 3c:fd:fe:35:65:80
+      macAddress: 40:a6:b7:15:f4:4c
     - name: enp1s0f1
-      macAddress: 3c:fd:fe:35:65:82
+      macAddress: 40:a6:b7:15:f4:4d
