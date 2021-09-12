@@ -53,10 +53,10 @@ spec:
         ipv4:
           enabled: false
           dhcp: false
-    dns-resolver:
-      config:
-        server:
-          - 192.19.128.2
+#    dns-resolver:
+#      config:
+#        server:
+#          - 192.19.128.2
 #    routes:
 #      config:
 #        - destination: 0.0.0.0/0
@@ -128,10 +128,10 @@ spec:
         ipv4:
           enabled: false
           dhcp: false
-    dns-resolver:
-      config:
-        server:
-          - 192.19.128.2
+#    dns-resolver:
+#      config:
+#        server:
+#          - 192.19.128.2
 #    routes:
 #      config:
 #        - destination: 0.0.0.0/0
@@ -203,10 +203,10 @@ spec:
         ipv4:
           enabled: false
           dhcp: false
-    dns-resolver:
-      config:
-        server:
-          - 192.19.128.2
+#    dns-resolver:
+#      config:
+#        server:
+#          - 192.19.128.2
 #    routes:
 #      config:
 #        - destination: 0.0.0.0/0
