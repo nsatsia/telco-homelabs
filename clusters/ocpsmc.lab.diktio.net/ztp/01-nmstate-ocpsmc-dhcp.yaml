@@ -9,12 +9,6 @@ metadata:
 spec:
   config:
     interfaces:
-      - name: eth0
-        type: ethernet
-        state: down
-        ipv4:
-          enabled: false
-          dhcp: false
       - name: eno1
         type: ethernet
         state: down
@@ -40,8 +34,6 @@ spec:
           enabled: false
           dhcp: false
   interfaces:
-    - name: eth0
-      macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
       macAddress: 3c:ec:ef:2d:05:66
     - name: eno2
@@ -61,12 +53,6 @@ metadata:
 spec:
   config:
     interfaces:
-      - name: eth0
-        type: ethernet
-        state: down
-        ipv4:
-          enabled: false
-          dhcp: false
       - name: eno1
         type: ethernet
         state: down
@@ -92,8 +78,6 @@ spec:
           enabled: false
           dhcp: false
   interfaces:
-    - name: eth0
-      macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
       macAddress: 3c:ec:ef:2d:05:bc
     - name: eno2
@@ -113,12 +97,6 @@ metadata:
 spec:
   config:
     interfaces:
-      - name: eth0
-        type: ethernet
-        state: down
-        ipv4:
-          enabled: false
-          dhcp: false
       - name: eno1
         type: ethernet
         state: down
@@ -144,8 +122,6 @@ spec:
           enabled: false
           dhcp: false
   interfaces:
-    - name: eth0
-      macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
       macAddress: 3c:ec:ef:2d:84:07
     - name: eno2

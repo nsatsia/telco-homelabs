@@ -25,13 +25,6 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0f0
-      - name: eth0
-        type: ethernet
-        state: down
-        mtu: 1500
-        ipv4:
-          enabled: false
-          dhcp: false
       - name: eno1
         type: ethernet
         state: down
@@ -63,8 +56,6 @@ spec:
 #          next-hop-address: 192.19.129.254
 #          next-hop-interface: bond0
   interfaces:
-    - name: eth0
-      macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
       macAddress: 3c:ec:ef:2d:05:66
     - name: eno2
@@ -100,13 +91,6 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0f0
-      - name: eth0
-        type: ethernet
-        state: down
-        mtu: 1500
-        ipv4:
-          enabled: false
-          dhcp: false
       - name: eno1
         type: ethernet
         state: down
@@ -138,8 +122,6 @@ spec:
 #          next-hop-address: 192.19.129.254
 #          next-hop-interface: bond0
   interfaces:
-    - name: eth0
-      macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
       macAddress: 3c:ec:ef:2d:05:bc
     - name: eno2
@@ -175,13 +157,6 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0f0
-      - name: eth0
-        type: ethernet
-        state: down
-        mtu: 1500
-        ipv4:
-          enabled: false
-          dhcp: false
       - name: eno1
         type: ethernet
         state: down
@@ -213,8 +188,6 @@ spec:
 #          next-hop-address: 192.19.129.254
 #          next-hop-interface: bond0
   interfaces:
-    - name: eth0
-      macAddress: b0:3a:f2:b6:05:9f
     - name: eno1
       macAddress: 3c:ec:ef:2d:84:07
     - name: eno2
