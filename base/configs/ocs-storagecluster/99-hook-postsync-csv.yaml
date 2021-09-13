@@ -1,0 +1,39 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  name: postsync-csv-wait-class-job
+  # generateName: postsync-csv-wait-job-
+  namespace: openshift-storage
+spec:
+  template:
+    spec:
+      containers:
+        - image: registry.redhat.io/openshift4/ose-cli:latest
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "OCS PostSync Hook"
+              DEFAULT_CLASS="ocs-external-storagecluster-cephfs"
+              OCS_CLASS="Pausing $SLEEP seconds..."
+              while [ "$OCS_CLASS" != $DEFAULT_CLASS ]; do
+                echo "Waiting for the OCS Storage Class to be ready. ($OCS_CLASS)"
+                sleep $SLEEP
+                OCS_CLASS=$( oc get storageclass | egrep $DEFAULT_CLASS | awk '{print $1}' )
+              done
+              oc patch storageclass $DEFAULT_CLASS -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
+              echo "All done! Hooray!"
+          imagePullPolicy: IfNotPresent
+          name: mcp-wait-job
+          env:
+          - name: SLEEP
+            value: "3"
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
