@@ -1,137 +1,130 @@
-# SKYLARK
+# Telco Managment Cluster
 
-Skylark is a RAN workload cluster.  Skylark is meant to be deployed by a Management cluster.
+The Telco management cluster must be OCP 4.8.x and be deployed using one of the following methods:
 
-## Networks
-Domain: skylark.cars.lab
+- Assisted Installer / Assisted Service Operator mode
+- Baremetal IPI mode
 
-| IP or CIDR     | USAGE        |
-|----------------|:-------------|
-| 10.50.0.0/24   | Cluster CIDR |
-| 10.50.0.98     | apiVIP       |
-| 10.50.0.99     | ingressVIP   |
+These method are the only methods that deploy and configure the `cluster-baremetal-operator` in the cluster which is a requirement for some of the automation flows.
 
-## Nodes
-| SERVER   | FQDN                       | LABEL        | NODE IP      | SERVICE TAG | BMC IP        | LOCATION  |
-|----------|----------------------------|--------------|--------------|-------------|---------------|-----------|
-| CU2      | cu2.skylark.cars.lab       | R740 XL      | 10.50.0.152  | B51TJ93     | 172.28.11.35  | LDC1      |
-| MGMT1    | mgmt1.skylark.cars.lab     | R740 XL      | 172.16.0.101 | B53TJ93     | 172.28.11.36  | LDC1      |
-| DU1      | du1.skylark.cars.lab       | SMCI X12     | 172.17.0.181 |             | 172.28.11.42  | FEC1      |
+**NOTE:** Due to `BZ-1953979` the minimum version for mgmt cluster is `4.8.0-0.nightly-2021-05-31-085539`
 
-## Control Plane
-OpenShift Control Plane for cluster, Baremetal option
+##
 
-| Supervisors              | MAC               | IP           | CONFIG                                   |
-|--------------------------|-------------------|--------------|------------------------------------------|
-| super1.skylark.cars.lab  | 40:A6:B7:51:9F:70 | 10.50.0.101  | 96 vCPU, 192G RAM, 2*480 SSD, 2x1.6 NVMe |
-| super2.skylark.cars.lab  | 40:A6:B7:51:8A:60 | 10.50.0.102  | 96 vCPU, 192G RAM, 2*480 SSD, 2x1.6 NVMe |
-| super3.skylark.cars.lab  | 40:A6:B7:51:51:C0 | 10.50.0.103  | 96 vCPU, 192G RAM, 2*480 SSD, 2x1.6 NVMe |
-
-OpenShift Control Plane for cluster, Virtual Machine option
-
-| Supervisors              | MAC               | IP           | CONFIG                                  |
-|--------------------------|-------------------|--------------|-----------------------------------------|
-| super1.skylark.cars.lab  | 52:52:00:11:33:11 | 172.17.0.121 | 8 vCPU, 16G RAM, 1*120GB Disk           |
-| super2.skylark.cars.lab  | 52:52:00:11:33:22 | 172.17.0.122 | 8 vCPU, 16G RAM, 1*120GB Disk           |
-| super3.skylark.cars.lab  | 52:52:00:11:33:33 | 172.17.0.123 | 8 vCPU, 16G RAM, 1*120GB Disk           |
-
-
-## Cluster Deployment using Hive / Metal3 / OpenShift Infrastructure Operator
+One the cluster is deployed using one of the valid deployment methods for Telco Management Clusters
 
 ```bash
- cd ztp/
- ```
+export KUBECONFIG="~/path/to/kubeconfig-telco-mgmt"
+export TELCO_MGMT_PATH="~/path/to/this/path"
+oc apply -k $TELCO_MGMT_PATH
 
-```bash
- oc kustomize .
- ```
- to examine what would be applied.
+export KUBECONFIG="~/ocpsmc"
+export TELCO_MGMT_PATH="~/Documents/vscode/telco-homelabs/clusters/ocpsmc.lab.diktio.net/"
+oc apply -k $TELCO_MGMT_PATH
 
-```bash
-oc apply -k .
 ```
 
-to apply manifests using Kustomize in this directory.
+- Sample run from a directory containing a copy of this repository.
 
 ```bash
-oc create -f 02-bmh-ran-skylark-cars-lab-RWN.yaml
+# "oc" should have access to the management cluster 
+$ oc whoami --show-server
+https://api.mgmt.telco.shift.zone:6443
+
+# label all nodes for LSO
+$ oc label node -l kubernetes.io/os=linux ran.openshift.io/lso=''
+node/m0 labeled
+node/m1 labeled
+node/m2 labeled
+
+# apply role to 
+$ oc apply -k .
+namespace/assisted-installer configured
+namespace/open-cluster-management created
+namespace/openshift-local-storage configured
+namespace/openshift-serverless configured
+namespace/telco-gitops configured
+serviceaccount/cli-job-sa configured
+clusterrole.rbac.authorization.k8s.io/cli-job-sa-role configured
+clusterrole.rbac.authorization.k8s.io/telco-gitops-custom-role configured
+clusterrolebinding.rbac.authorization.k8s.io/cli-job-sa-rolebinding configured
+clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-group created
+...<snip>...
+error: unable to recognize ".": no matches for kind "MultiClusterHub" in version "operator.open-cluster-management.io/v1"
 ```
 
-## Verification During RAN Cluster Buildout
-After feeding the ztp/02-bmh* CRD file to the management cluster, the workload cluster will start deploying.  To check:
+- Ignore the "no matches for kind '...<a_kind_here>...' " errors. The reason for these is that the Operators are installing but the deployment has not compelted by the time it tries to configure the CRs in the first run.
+  - Once the Operators are installed rerun the `oc apply -k .`
+- Disconnection for the ingressVIP and apiVIP might be experienced as the configuration is modifying the corresponding operator configuration. There is a rolling update that is also kickstarted by any MCO configuration update applied to nodes. After few minutes the base configuration should be completed
+- (optional) Set a default storageclass
 
-``` bash
-$ oc get agents.agent-install.openshift.io -o wide
-NAME                                   CLUSTER                        APPROVED   ROLE     STAGE                  HOSTNAME
-57c5d417-f114-48c2-8eb9-769bc0dd532e   cluster-ran-skylark-cars-lab   true       master   Done                   super3-vm   
-73e2b7fe-5388-4502-910b-fc8796d61e55   cluster-ran-skylark-cars-lab   true       master   Waiting for bootkube   super2-vm   
-81acb6aa-f73c-a5f7-a3c1-fa760c4fb43f   cluster-ran-skylark-cars-lab   true       worker   Waiting for ignition   cu2         
-b1054569-9638-f04e-7c38-12ae57d754d4   cluster-ran-skylark-cars-lab   true       worker   Waiting for ignition   mgmt1       
-cd4dc2da-7337-4f1f-a92f-0e2bcf5681f5   cluster-ran-skylark-cars-lab   true       master   Done                   super1-vm
-```
+    ```bash
+    # set lso-filesystemclass as default
+    oc patch storageclass lso-filesystemclass \
+    -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    ```
 
-### Check node booting and associating with OpenShift Infrastructure operator
-This command can be used to get regular status from the cluster deployment:
+- Create secret from pull-secret for Assisted Installer Operator
+
+    ```bash
+    oc create secret generic assisted-deployment-pull-secret -n assisted-installer \
+    --from-file=.dockerconfigjson=pull-secret.json --type=kubernetes.io/dockerconfigjson
+    ```
+
+- Patch metal3 so it can see all the `bmh` resources in all namespaces:
+  
+    ```bash
+    oc patch provisioning provisioning-configuration --type merge -p '{"spec":{"watchAllNamespaces": true}}'
+    ```
+- To obtain the password for `telco-gitops` ArgoCD `admin`
+  
+    ```bash
+    oc get secret -n telco-gitops telco-gitops-cluster -o go-template='{{index .data "admin.password"}}' | base64 -d
+    ```
+
+## Define a cluster for ArgoCD
+
+After a management cluster is deployed, before using ArgoCD for day-2 GitOps configurations, the cluster credentials must be defined in ArgoCD.
 
 ```bash
-oc get agents.agent-install.openshift.io -n assisted-installer  -o=jsonpath='{range .items[*]}{"\n"}{.spec.clusterDeploymentName.name}{"\n"}{.status.inventory.hostname}{"\n"}{range .status.conditions[*]}{.type}{"\t"}{.message}{"\n"}{end}'
+# Linux argocd CLI 
+curl -L -o argocd https://github.com/argoproj/argo-cd/releases/download/v2.0.5/argocd-linux-amd64
 
-cluster-ran-skylark-cars-lab
-super3-vm
-SpecSynced	The Spec has been successfully applied
-Connected	The agent's connection to the installation service is unimpaired
-RequirementsMet	The agent installation stopped
-Validated	The agent's validations are passing
-Installed	The installation has completed: Done
-
-cluster-ran-skylark-cars-lab
-super2-vm
-SpecSynced	The Spec has been successfully applied
-Connected	The agent's connection to the installation service is unimpaired
-RequirementsMet	Installation already started and is in progress
-Validated	The agent's validations are passing
-Installed	The installation is in progress: Waiting for bootkube
-
-cluster-ran-skylark-cars-lab
-cu2
-SpecSynced	The Spec has been successfully applied
-Connected	The agent's connection to the installation service is unimpaired
-RequirementsMet	Installation already started and is in progress
-Validated	The agent's validations are passing
-Installed	The installation is in progress: Waiting for ignition
-
-cluster-ran-skylark-cars-lab
-mgmt1
-SpecSynced	The Spec has been successfully applied
-Connected	The agent's connection to the installation service is unimpaired
-RequirementsMet	Installation already started and is in progress
-Validated	The agent's validations are passing
-Installed	The installation is in progress: Waiting for ignition
-
-cluster-ran-skylark-cars-lab
-super1-vm
-SpecSynced	The Spec has been successfully applied
-Connected	The agent's connection to the installation service is unimpaired
-RequirementsMet	The agent installation stopped
-Validated	The agent's validations are passing
-Installed	The installation has completed: Done
+# MacOS argocd CLI
+curl -L -o argocd https://github.com/argoproj/argo-cd/releases/download/v2.0.5/argocd-darwin-amd64
 ```
 
-### Commands to get kubeconfig and kubeadmin password
-Use the following two commands once the cluster is finished buiding to retrieve both the kubeconfig and kubeadmin credentials:
+- Login into the ArgoCD instance in the management cluster using ArgoCD CLI. You will be prompted for the ArgoCD `admin` password.
 
-```bash
-oc get secret -n assisted-installer cluster-ran-skylark-cars-lab-admin-kubeconfig -o json | jq -r '.data.kubeconfig' | base64 -d > ~/kubeconfig-skylark
-oc get secret -n assisted-installer cluster-ran-skylark-cars-lab-admin-password -o json | jq -r '.data.password' | base64 -d > ~/kubeadmin-skylark
-```
+    ```bash
+    # User admin, password from above
+    argocd login telco-gitops-server-telco-gitops.apps.ocpmgmt.lab.diktio.net
+    ---argocd login https://api.mgmt.telco.shift.zone:6443 --name admin---
+    ```
 
-## Post deployment
-The following manifests configure the cluster to operate as a RAN cluster.  You will see some warning messages and some "unable to recognize" and Error from server (Invalid) messages.  Run `oc apply -k` a few times.
+- List clusters
+  
+    ```bash
+    $ argocd cluster list
+    SERVER                                  NAME        VERSION  STATUS      MESSAGE
+    https://kubernetes.default.svc          in-cluster  1.21+    Successful
+    ```
 
-```bash
-export KUBECONFIG=~/kubeconfig-skylark
-export TELCO_RANCLUSTER_PATH=~/carslab-public/rhocp-clusters/tesla.cars.lab
-oc kustomize $TELCO_RANCLUSTER_PATH
+- Add target cluster (assumes target cluster already deployed)
 
-oc apply -k $TELCO_RANCLUSTER_PATH
-```
+    ```bash
+    $ argocd cluster add --kubeconfig ~/kubeconfig-telco-core admin --name telco-core
+    INFO[0000] ServiceAccount "argocd-manager" created in namespace "kube-system"
+    INFO[0000] ClusterRole "argocd-manager-role" created
+    INFO[0000] ClusterRoleBinding "argocd-manager-role-binding" created
+    Cluster 'https://api.core.telco.shift.zone:6443' added
+    ```
+
+- Validate cluster has been defined
+
+    ```bash
+    argocd cluster list
+    SERVER                                  NAME        VERSION  STATUS      MESSAGE
+    https://api.core.telco.shift.zone:6443  telco-core  1.20     Successful
+    https://kubernetes.default.svc          in-cluster  1.21+    Successful
+    ```

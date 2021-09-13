@@ -3,27 +3,37 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 commonLabels:
-  telco-gitops/cluster-name: ocptest
-  topology.kubernetes.io/region: ocptest
+  telco-gitops/cluster-name: ocpmgmt.lab.diktio.net
+  topology.kubernetes.io/region: ocpmgmt.lab.diktio.net
   # Each SITE_ID is a different zone
   #topology.kubernetes.io/zone: sample-zone
 
 commonAnnotations:
-  # Annotations to work around automatically generated resoruces
-  # to avoid ArgoCD reporing out-of-sync
+  # Annotations to work around automatically generated resources
+  # to avoid ArgoCD reporting out-of-sync
   argcd.argoproj.io/compare-options: IgnoreExtraneous
   argocd.argoproj.io/sync-options: Prune=false
 
 bases:
-#  # Common Operators
-#  - ../../base/configs/all-common
-  - github.com/openshift-telco/telco-gitops/base/configs/all-common?ref=main
-#  # Import blueprint cluster definitions
-#  - ../../blueprints/combined-ran
-  - github.com/openshift-telco/telco-gitops/blueprints/core-5g?ref=main
-#  # OpenShift Logging
-#  # - ../../base/operators/openshift-logging
-  - github.com/openshift-telco/telco-gitops/base/operators/openshift-logging?ref=main
+  # Common Operators
+  - github.com/nsatsia/telco-gitops/base/configs/all-common?ref=main
+  # Operators for MGMT Clusters
+  - github.com/nsatsia/telco-gitops/blueprints/mgmt?ref=main
+  # Hive
+  - github.com/nsatsia/telco-gitops/base/operators/hive
+  # Red Hat Advanced Cluster Manager for Kubernetes
+  # - github.com/nsatsia/telco-gitops/base/operators/advanced-cluster-management?ref=main
+  # OpenShift Container storage
+  - github.com/nsatsia/telco-gitops/base/operators/openshift-container-storage?ref=main
+  # OpenShiftVirt
+  # - github.com/nsatsia/telco-gitops/base/operators/openshift-virtualization?ref=main
+  # Quay Enterprise
+  - github.com/nsatsia/telco-gitops/base/operators/quay-enterprise-operator?ref=main
+  # OpenShift Logging
+  # - github.com/nsatsia/telco-gitops/base/operators/openshift-logging?ref=main
+  # Configure telco-gitops for cluster
+  - ./telco-gitops
 
-patches:
-#  - ./00-patch.yaml
+resources:
+  #- 01-master-create-lvs-for-lso.yaml
+  #- 02-lso-localvolume-lvs.yaml
