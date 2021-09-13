@@ -27,6 +27,8 @@ bases:
   - ../../base/configs/ocs-storagecluster
   # Quay Enterprise
   - ../../base/operators/quay-enterprise-operator
+  # Quay Enterprise MGMT regisrty
+  - ../../base/configs/quay-mgmt-registry
   # OpenShift Logging
   # - ../../base/operators/openshift-logging
   # OpenShiftVirt
