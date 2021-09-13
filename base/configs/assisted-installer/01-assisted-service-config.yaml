@@ -1,0 +1,14 @@
+---
+# https://github.com/openshift/assisted-service/blob/master/docs/operator.md#specifying-environmental-variables-via-configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: assisted-service-config
+  namespace: assisted-installer
+data:
+#  LOG_LEVEL: "debug"
+  SUPPORT_L2: "false"
+#  DISABLED_HOST_VALIDATIONS: "belongs-to-machine-cidr,belongs-to-majority-group"
+  ISO_IMAGE_TYPE: "full-iso"
+  PUBLIC_CONTAINER_REGISTRIES: "lab-registry.ocpmgmt.lab.diktio.net"
+  CONTROLLER_IMAGE: "quay.io/ocpmetal/assisted-installer-controller@sha256:e85bfcb56a970996162c857782dd3f87f6aa17fa1ce2e7c89c7502b2d28ea67f"
