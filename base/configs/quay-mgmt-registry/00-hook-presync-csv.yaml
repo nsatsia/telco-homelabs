@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  name: presync-csv-wait-job
+  name: presync-csv-wait-quay-job
   # generateName: presync-csv-wait-job-
   namespace: openshift-storage
   template:
