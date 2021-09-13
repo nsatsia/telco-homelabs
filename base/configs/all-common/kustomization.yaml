@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  telco-common: telco-gitops
+
+bases:
+  # Configure chrony
+  - ../chrony
+  # Identity Provider (htpasswd)
+  - ../idp-htpasswd
+  # local storage operator
+  #- ../../operators/local-storage-operator
+  # LSO auto-discovery label
+  #- ../lso

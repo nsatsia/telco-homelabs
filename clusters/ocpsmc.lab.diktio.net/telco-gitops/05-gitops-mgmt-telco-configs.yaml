@@ -8,8 +8,8 @@ spec:
   generators:
     - git:
         directories:
-          - path: mgmt.telco.shift.zone/config-*
-        repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
+          - path: ocpsmc.lab.diktio.net/config-*
+        repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
         revision: HEAD
   template:
     metadata:
@@ -22,5 +22,5 @@ spec:
       project: default
       source:
         path: '{{path}}'
-        repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
+        repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
         targetRevision: HEAD

@@ -1,0 +1,18 @@
+---
+# WARNING: ONLY USE THIS FOR MANAGING CLUSTERS NOT FOR REGULAR USERS
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: telco-gitops-cluster-admin-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: telco-gitops-argocd-application-controller
+    namespace: telco-gitops
+  # NOTE: THIS INSTANCE IT IS ONLY FOR CLUSTER ADMINS
+  - kind: ServiceAccount
+    name: telco-gitops-argocd-server
+    namespace: telco-gitops
