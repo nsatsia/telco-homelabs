@@ -22,7 +22,7 @@ bases:
   # Assisted Installer (now Infrastructre Operator)
   - ../../base/operators/assisted-installer
   # Assisted Installer Agent Configuration
-  - ../../base/config/assisted-installer
+  - ../../base/configs/assisted-installer
   # OpenShift Container storage
   - ../../base/operators/openshift-container-storage
   # OpenShift Container storage cluster
