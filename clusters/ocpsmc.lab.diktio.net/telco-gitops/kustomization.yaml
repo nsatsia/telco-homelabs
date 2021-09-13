@@ -6,5 +6,5 @@ bases:
   - ../../../base/configs/telco-gitops
 
 resources:
-  # - 05-gitops-mgmt-telco-configs.yaml
-  # NEED TO TIME IT BETTER
+  - 05-gitops-mgmt-telco-configs.yaml
+

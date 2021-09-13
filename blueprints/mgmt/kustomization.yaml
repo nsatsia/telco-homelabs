@@ -23,6 +23,8 @@ bases:
   - ../../base/operators/assisted-installer
   # OpenShift Container storage
   - ../../base/operators/openshift-container-storage
+  # OpenShift Container storage cluster
+  - ../../base/configs/ocs-storagecluster
   # Quay Enterprise
   - ../../base/operators/quay-enterprise-operator
   # OpenShift Logging
