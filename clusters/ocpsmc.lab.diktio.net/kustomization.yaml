@@ -16,9 +16,9 @@ commonAnnotations:
 
 bases:
   # Common Operators
-  - ../../base/configs/all-common?ref=main
+  - ../../base/configs/all-common
   # Operators for MGMT Clusters
-  # - ../../blueprints/mgmt?ref=main
+  # - ../../blueprints/mgmt
   # OpenShift GitOps
   - ../../base/operators/openshift-gitops
   # Configure telco-gitops for cluster
