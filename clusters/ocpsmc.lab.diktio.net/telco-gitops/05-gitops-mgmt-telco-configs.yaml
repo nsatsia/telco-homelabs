@@ -1,0 +1,26 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+ name: mgmt-telco-shift-zone
+ namespace: telco-gitops
+spec:
+  generators:
+    - git:
+        directories:
+          - path: mgmt.telco.shift.zone/config-*
+        repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
+        revision: HEAD
+  template:
+    metadata:
+      name: '00-mgmt-{{path.basename}}'
+      namespace: telcot-gitops
+    spec:
+      destination:
+        namespace: telco-gitops
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        path: '{{path}}'
+        repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
+        targetRevision: HEAD

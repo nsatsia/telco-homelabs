@@ -1,0 +1,29 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: telco-gitops-ztp
+  namespace: telco-gitops
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/nsatsia/telco-homelabs.git
+      revision: HEAD 
+      directories:
+        - path: clusters/*
+  template:
+    metadata:
+      name: '01-ztp-{{path.basename}}'
+      namespace: telco-gitops
+    spec:
+#      syncPolicy:
+#        automated: {}
+#        selfHeal: true        
+      destination:
+        namespace: telco-gitops
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        repoURL: https://github.com/nsatsia/telco-homelabs.git
+        targetRevision: HEAD
+        path: '{{path}}/ztp'

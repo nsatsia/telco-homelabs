@@ -1,0 +1,23 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: cluster-ocpsmc-lab
+  namespace: assisted-installer
+spec:
+  baseDomain: lab.diktio.net
+  clusterName: ocpsmc
+  controlPlaneConfig:
+    servingCertificates: {}
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: aci-ocpsmc-lab
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          telco-core: core-ocpsmc-lab
+  pullSecretRef:
+    name: pull-secret
