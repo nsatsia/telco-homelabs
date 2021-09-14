@@ -4,7 +4,7 @@ kind: Kustomization
 
 bases:
   # OpenShift Container storage cluster
-  - ../configs/ocs-storagecluster
+  - ../../configs/ocs-storagecluster
 
 resources:
 - 01-install.yaml

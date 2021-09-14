@@ -4,7 +4,7 @@ kind: Kustomization
 
 bases:
   # Quay Enterprise MGMT regisrty
-  - ../configs/quay-mgmt-registry
+  - ../../configs/quay-mgmt-registry
 
 resources:
   - 01-install.yaml

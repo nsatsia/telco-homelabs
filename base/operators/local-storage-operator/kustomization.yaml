@@ -4,7 +4,7 @@ kind: Kustomization
 
 bases:
   # OpenShift LSO Config
-  - ../configs/local-storage-operator
+  - ../../configs/local-storage-operator
 
 resources:
 - 01-install.yaml

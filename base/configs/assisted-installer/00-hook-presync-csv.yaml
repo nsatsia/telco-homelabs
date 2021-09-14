@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   name: presync-csv-wait-ai-job
   # generateName: presync-csv-wait-job-
-  namespace: openshift-operators
+  namespace: assisted-installer
 spec:
   template:
     spec:
