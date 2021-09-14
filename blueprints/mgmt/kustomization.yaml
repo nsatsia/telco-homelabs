@@ -20,15 +20,15 @@ bases:
   # Hive
   - ../../base/operators/hive
   # Assisted Installer (now Infrastructre Operator)
-  - ../../base/operators/assisted-installer
+  ###- ../../base/operators/assisted-installer
   # Local Storage Operator
   - ../../base/operators/local-storage-operator
   # LSO auto-discovery label  DELETE?
   #- ../lso
   # OpenShift Container storage
-  - ../../base/operators/openshift-container-storage
+  ###- ../../base/operators/openshift-container-storage
   # Quay Enterprise
-  - ../../base/operators/quay-enterprise-operator
+  ###- ../../base/operators/quay-enterprise-operator
   # OpenShift Logging
   # - ../../base/operators/openshift-logging
   # OpenShiftVirt
