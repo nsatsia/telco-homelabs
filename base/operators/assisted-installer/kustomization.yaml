@@ -4,7 +4,7 @@ kind: Kustomization
 
 bases:
   # Assisted Installer Agent Configuration
-  - ../configs/assisted-installer
+  - ../../configs/assisted-installer
 
 resources:
   - 01-install.yaml
