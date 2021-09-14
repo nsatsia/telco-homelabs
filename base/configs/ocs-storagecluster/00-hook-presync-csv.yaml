@@ -24,6 +24,12 @@ spec:
                 sleep $SLEEP
                 CSV_STATUS=$( oc get csv -n openshift-storage -l operators.coreos.com/ocs-operator.openshift-storage='' -o jsonpath={..status.conditions[-1:].reason} )
               done
+              CSV_STATUS="Pausing $SLEEP seconds..."
+              while [ "$CSV_STATUS" != "Available" ]; do
+                echo "Waiting for LSo volume set ($CSV_STATUS)"
+                sleep $SLEEP
+                CSV_STATUS=$( oc get localvolumeset -n openshift-local-storage ocs-local-volume-set -o jsonpath={..status.conditions[-1:].type} )
+              done
               echo "All done! Hooray!"
           imagePullPolicy: IfNotPresent
           name: mcp-wait-job

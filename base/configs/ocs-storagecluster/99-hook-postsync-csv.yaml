@@ -18,7 +18,7 @@ spec:
             - -c
             - |
               echo "OCS PostSync Hook"
-              DEFAULT_CLASS="ocs-external-storagecluster-cephfs"
+              DEFAULT_CLASS="ocs-storagecluster-ceph-rbd"
               OCS_CLASS="Pausing $SLEEP seconds..."
               while [ "$OCS_CLASS" != $DEFAULT_CLASS ]; do
                 echo "Waiting for the OCS Storage Class to be ready. ($OCS_CLASS)"

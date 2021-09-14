@@ -21,16 +21,10 @@ bases:
   - ../../base/operators/hive
   # Assisted Installer (now Infrastructre Operator)
   - ../../base/operators/assisted-installer
-  # Assisted Installer Agent Configuration
-  - ../../base/configs/assisted-installer
   # OpenShift Container storage
   - ../../base/operators/openshift-container-storage
-  # OpenShift Container storage cluster
-  - ../../base/configs/ocs-storagecluster
   # Quay Enterprise
   - ../../base/operators/quay-enterprise-operator
-  # Quay Enterprise MGMT regisrty
-  - ../../base/configs/quay-mgmt-registry
   # OpenShift Logging
   # - ../../base/operators/openshift-logging
   # OpenShiftVirt
