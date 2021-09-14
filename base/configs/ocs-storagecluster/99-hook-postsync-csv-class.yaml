@@ -19,21 +19,21 @@ spec:
               echo "OCS PostSync Hook"
               DEFAULT_CLASS="ocs-storagecluster-ceph-rbd"
               OCS_CLASS="Pausing $SLEEP seconds..."
-              while [ "$OCS_CLASS" != $DEFAULT_CLASS ]; do
+              while [ "$OCS_CLASS" != "$DEFAULT_CLASS" ]; do
                 echo "Waiting for the OCS Storage Class to be ready. ($OCS_CLASS)"
                 sleep $SLEEP
                 OCS_CLASS=$( oc get storageclass -n openshift-storage | egrep $DEFAULT_CLASS | awk '{print $1}' )
               done
               oc patch storageclass $DEFAULT_CLASS -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
               #
-              DEFAULT_PVC="db-noobaa-db-pg-0"
-              OCS_PVC="Pausing $SLEEP seconds..."
-              while [ "$OCS_PVC" != $DEFAULT_PVC ]; do
-                echo "Waiting for the OCS Storage PVC to be ready. ($OCS_PVC)"
-                sleep $SLEEP
-                OCS_PVC=$( oc get pvc -n openshift-storage | egrep $DEFAULT_PVC | awk '{print $1}' )
-              done
-              oc patch pvc -n openshift-storage $DEFAULT_PVC -p '{"spec": {"resources": {"requests": {"storage": "300Gi"}}}}'
+              #DEFAULT_PVC="db-noobaa-db-pg-0"
+              #OCS_PVC="Pausing $SLEEP seconds..."
+              #while [ "$OCS_PVC" != "$DEFAULT_PVC" ]; do
+              #  echo "Waiting for the OCS Storage PVC to be ready. ($OCS_PVC)"
+              #  sleep $SLEEP
+              #  OCS_PVC=$( oc get pvc -n openshift-storage | egrep $DEFAULT_PVC | awk '{print $1}' )
+              #done
+              #oc patch pvc -n openshift-storage $DEFAULT_PVC -p '{"spec": {"resources": {"requests": {"storage": "300Gi"}}}}'
               echo "All done! Hooray!"
           imagePullPolicy: IfNotPresent
           name: mcp-wait-job
