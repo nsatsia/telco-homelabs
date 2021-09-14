@@ -5,13 +5,23 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  name: postsync-csv-wait-class-job
+  name: postsync-csv-wait-class-storage-job
   namespace: telco-gitops
 spec:
   template:
     spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
       containers:
         - image: registry.redhat.io/openshift4/ose-cli:latest
+          imagePullPolicy: IfNotPresent
+          name: mcp-wait-job
+          env:
+            - name: SLEEP
+              value: "3"
           command:
             - /bin/bash
             - -c
@@ -26,13 +36,3 @@ spec:
               done
               oc patch storageclass $DEFAULT_CLASS -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
               echo "All done! Hooray!"
-          imagePullPolicy: IfNotPresent
-          name: mcp-wait-job
-          env:
-          - name: SLEEP
-            value: "3"
-      dnsPolicy: ClusterFirst
-      restartPolicy: OnFailure
-      serviceAccount: cli-job-sa
-      serviceAccountName: cli-job-sa
-      terminationGracePeriodSeconds: 30
