@@ -6,7 +6,6 @@ metadata:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   name: postsync-csv-wait-class-job
-  # generateName: postsync-csv-wait-job-
   namespace: telco-gitops
 spec:
   template:
@@ -26,6 +25,7 @@ spec:
                 OCS_CLASS=$( oc get storageclass -n openshift-storage | egrep $DEFAULT_CLASS | awk '{print $1}' )
               done
               oc patch storageclass $DEFAULT_CLASS -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
+              #
               DEFAULT_PVC="db-noobaa-db-pg-0"
               OCS_PVC="Pausing $SLEEP seconds..."
               while [ "$OCS_PVC" != $DEFAULT_PVC ]; do
