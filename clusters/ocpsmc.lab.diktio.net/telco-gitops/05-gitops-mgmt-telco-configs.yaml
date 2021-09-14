@@ -8,7 +8,7 @@ spec:
   generators:
     - git:
         directories:
-          - path: ocpsmc.lab.diktio.net/config-*
+          - path: clusters/ocpsmc.lab.diktio.net/config-*
         repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
         revision: HEAD
   template:
