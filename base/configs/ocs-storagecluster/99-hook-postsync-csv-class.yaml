@@ -22,7 +22,7 @@ spec:
               while [ "$OCS_CLASS" != "$DEFAULT_CLASS" ]; do
                 echo "Waiting for the OCS Storage Class to be ready. ($OCS_CLASS)"
                 sleep $SLEEP
-                OCS_CLASS=$( oc get storageclass -n openshift-storage | egrep $DEFAULT_CLASS | awk '{print $1}' )
+                OCS_CLASS=$( oc get storageclass | egrep $DEFAULT_CLASS | awk '{print $1}' )
               done
               oc patch storageclass $DEFAULT_CLASS -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
               echo "All done! Hooray!"
