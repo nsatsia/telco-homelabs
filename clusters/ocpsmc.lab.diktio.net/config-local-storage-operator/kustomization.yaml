@@ -7,7 +7,7 @@ kind: Kustomization
 
 bases:
   # OpenShift LSO Config
-  - ../../../configs/local-storage-operator
+  - ../../../base/configs/local-storage-operator
 
 
 resources:
