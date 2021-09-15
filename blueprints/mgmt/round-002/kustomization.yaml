@@ -1,0 +1,19 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  telco-gitops/mgmt: telco-gitops
+
+bases:
+  #####################################################
+  # Operators for MGMT Clusters
+  #####################################################
+  # Assisted Installer (now Infrastructre Operator)
+  - ../../base/operators/assisted-installer
+  # Quay Enterprise
+  - ../../base/operators/quay-enterprise-operator
+  # OpenShift Logging
+  # - ../../base/operators/openshift-logging
+  # OpenShiftVirt
+  # - ../../base/operators/openshift-virtualization?ref=main

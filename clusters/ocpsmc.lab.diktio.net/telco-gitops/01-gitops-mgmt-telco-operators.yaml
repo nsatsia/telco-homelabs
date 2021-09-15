@@ -2,13 +2,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
- name: mgmt-telco-shift-zone
+ name: mgmt-telco-operators
  namespace: telco-gitops
 spec:
   generators:
     - git:
         directories:
-          - path: clusters/ocpsmc.lab.diktio.net/config-*
+          - path: clusters/ocpsmc.lab.diktio.net/operator-*
         repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
         revision: HEAD
   template:

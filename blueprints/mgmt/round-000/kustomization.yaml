@@ -9,7 +9,7 @@ bases:
   #####################################################
   # Operators for MGMT Clusters
   #####################################################
-  # Common Telco Optimizations
+    # Common Telco Optimizations
   - ../../base/configs/telco-optimized
   # OpenShift Pipelines
   - ../../base/operators/openshift-pipelines
@@ -19,17 +19,7 @@ bases:
   # - ../../base/operators/advanced-cluster-management
   # Hive
   - ../../base/operators/hive
-  # Assisted Installer (now Infrastructre Operator)
-  ###- ../../base/operators/assisted-installer
   # Local Storage Operator
   - ../../base/operators/local-storage-operator
   # LSO auto-discovery label  DELETE?
   #- ../lso
-  # OpenShift Container storage
-  ###- ../../base/operators/openshift-container-storage
-  # Quay Enterprise
-  ###- ../../base/operators/quay-enterprise-operator
-  # OpenShift Logging
-  # - ../../base/operators/openshift-logging
-  # OpenShiftVirt
-  # - ../../base/operators/openshift-virtualization?ref=main
