@@ -5,9 +5,5 @@ kind: Kustomization
 commonAnnotations:
   argocd.argoproj.io/sync-wave: "0"
 
-#bases:
-#  # OpenShift Container storage cluster
-#  - ../../configs/ocs-storagecluster
-
 resources:
 - 01-install.yaml
