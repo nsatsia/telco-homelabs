@@ -10,4 +10,4 @@ bases:
   # Operators for MGMT Clusters
   #####################################################
   # OpenShift Container storage
-  - ../../base/operators/openshift-container-storage
+  - ../../../base/operators/openshift-container-storage

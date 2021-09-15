@@ -10,16 +10,16 @@ bases:
   # Operators for MGMT Clusters
   #####################################################
     # Common Telco Optimizations
-  - ../../base/configs/telco-optimized
+  - ../../../base/configs/telco-optimized
   # OpenShift Pipelines
-  - ../../base/operators/openshift-pipelines
+  - ../../../base/operators/openshift-pipelines
   # OpenShift Serverless
-  - ../../base/operators/openshift-serverless
+  - ../../../base/operators/openshift-serverless
   # Red Hat Advanced Cluster Manager for Kubernetes
-  # - ../../base/operators/advanced-cluster-management
+  # - ../../../base/operators/advanced-cluster-management
   # Hive
-  - ../../base/operators/hive
+  - ../../../base/operators/hive
   # Local Storage Operator
-  - ../../base/operators/local-storage-operator
+  - ../../../base/operators/local-storage-operator
   # LSO auto-discovery label  DELETE?
   #- ../lso
