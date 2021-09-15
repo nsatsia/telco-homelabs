@@ -33,6 +33,6 @@ spec:
               - master3.ocpsmc.lab.diktio.net
   storageClassName: ocs-local-volume-set
   volumeMode: Block
-  fstype: ""
+  #fstype: ""
   # Number of devices to be used per node
   maxDeviceCount: 10
