@@ -5,6 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: "60"    
   name: presync-csv-wait-ai0-job
   # generateName: presync-csv-wait-job-
   namespace: telco-gitops
