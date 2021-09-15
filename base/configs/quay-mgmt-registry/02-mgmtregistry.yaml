@@ -20,5 +20,5 @@ spec:
     - kind: mirror
       managed: true
     - kind: monitoring
-      managed: true
+      managed: false
   configBundleSecret: lab-quay-config-bundle
