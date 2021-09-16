@@ -23,6 +23,7 @@ spec:
   osImages:
     - openshiftVersion: '4.8'
       version: 48.84.202107202156-0
+      cpuArchitecture: x86_64
       rootFSUrl: >-
         http://hypervisor1.lab.diktio.net:8989/openshift-v4/dependencies/rhcos/4.8/4.8.2/rhcos-live-rootfs.x86_64.img
       url: >-
