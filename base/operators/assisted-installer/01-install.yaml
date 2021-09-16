@@ -14,7 +14,8 @@ metadata:
   namespace: openshift-marketplace
 spec:
   sourceType: grpc
-  image: quay.io/ocpmetal/assisted-service-index:latest
+#  image: quay.io/ocpmetal/assisted-service-index:latest
+  image: quay.io/ocpmetal/assisted-service-index:ocm-2.3-20210910  
 ---
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
