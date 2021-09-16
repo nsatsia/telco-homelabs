@@ -10,7 +10,7 @@ bases:
   # Operators for MGMT Clusters
   #####################################################
   # Assisted Installer (now Infrastructre Operator)
-  - ../../../base/operators/assisted-installer
+  ##- ../../../base/operators/assisted-installer
   # Quay Enterprise
   - ../../../base/operators/quay-enterprise-operator
   # OpenShift Logging
