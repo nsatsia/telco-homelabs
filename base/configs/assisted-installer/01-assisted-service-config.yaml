@@ -6,7 +6,7 @@ metadata:
   name: assisted-service-config
   namespace: assisted-installer
 data:
-#  LOG_LEVEL: "debug"
+  LOG_LEVEL: "debug"
   SUPPORT_L2: "false"
 #  DISABLED_HOST_VALIDATIONS: "belongs-to-machine-cidr,belongs-to-majority-group"
   ISO_IMAGE_TYPE: "full-iso"
