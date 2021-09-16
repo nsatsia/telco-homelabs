@@ -4,7 +4,7 @@ kind: ClusterImageSet
 metadata:
    name: openshift-v4.8.10-mirror
 spec:
-   releaseImage: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4810:4.8.10-x86_64
+   releaseImage: lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4810:4.8.10-x86_64
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -38,7 +38,7 @@ data:
     tEChGIzF/34=
     -----END CERTIFICATE-----
   registries.conf: |
-    unqualified-search-registries = ["lab-registry.ocpmgmt.lab.diktio.net"]
+    unqualified-search-registries = ["lab-registry.ocpsmc.lab.diktio.net"]
 
     [[registry]]
        prefix = ""
@@ -46,25 +46,25 @@ data:
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia"
+       location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia"
     [[registry]]
        prefix = ""
        location = "quay.io/ocpmetal"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia"
+       location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia"
     [[registry]]
        prefix = ""
        location = "quay.io/openshift-release-dev/ocp-release"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4810"
+       location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4810"
     [[registry]]
        prefix = ""
        location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4810"
+       location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4810"
