@@ -11,4 +11,4 @@ data:
 #  DISABLED_HOST_VALIDATIONS: "belongs-to-machine-cidr,belongs-to-majority-group"
   ISO_IMAGE_TYPE: "full-iso"
   PUBLIC_CONTAINER_REGISTRIES: "lab-registry.ocpsmc.lab.diktio.net"
-  CONTROLLER_IMAGE: "quay.io/ocpmetal/assisted-installer-controller@sha256:e85bfcb56a970996162c857782dd3f87f6aa17fa1ce2e7c89c7502b2d28ea67f"
+  CONTROLLER_IMAGE: "quay.io/ocpmetal/assisted-installer-controller@sha256:6d1a34d68f30dcf1e8add4b01554fdfa5aa95d00b45620b14f8f9696391ab972"
