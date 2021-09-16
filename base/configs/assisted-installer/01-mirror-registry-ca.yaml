@@ -52,11 +52,11 @@ data:
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp485"
+       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4810"
     [[registry]]
        prefix = ""
        location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp485"
+       location = "lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4810"
