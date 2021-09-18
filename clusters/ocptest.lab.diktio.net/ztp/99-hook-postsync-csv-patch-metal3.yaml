@@ -16,7 +16,8 @@ spec:
       serviceAccountName: cli-job-sa
       terminationGracePeriodSeconds: 30
       containers:
-        - image: registry.redhat.io/openshift4/ose-cli:latest
+        #- image: registry.redhat.io/openshift4/ose-cli:latest
+        - image: lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
           imagePullPolicy: IfNotPresent
           name: mcp-wait-job
           env:
