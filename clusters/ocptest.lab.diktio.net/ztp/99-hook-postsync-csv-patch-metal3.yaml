@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         #- image: registry.redhat.io/openshift4/ose-cli:latest
-        - image: lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
+        - image: lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:new
           imagePullPolicy: IfNotPresent
           name: mcp-wait-job
           env:
@@ -49,7 +49,7 @@ spec:
               oc get secret -n assisted-installer cluster-$CLUSTER_NAME-lab-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
               cat /tmp/kubeconfig
               ARGOPW=$(oc get secret -n telco-gitops telco-gitops-cluster -o go-template='{{index .data "admin.password"}}' | base64 -d)
-              cat $ARGOPW
+              echo $ARGOPW
               echo argocd --username=admin --password=$ARGOPW --insecure login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               argocd --username=admin --password=$ARGOPW --insecure login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               argocd cluster add --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
