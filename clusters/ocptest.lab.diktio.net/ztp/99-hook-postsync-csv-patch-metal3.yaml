@@ -53,6 +53,7 @@ spec:
               argocd logout admin
               rm -f /tmp/kubeconfig
               echo "All done! Hooray!"
+              sleep 120
 
 
 
