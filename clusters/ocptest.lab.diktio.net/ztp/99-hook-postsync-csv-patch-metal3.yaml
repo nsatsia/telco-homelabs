@@ -36,7 +36,7 @@ spec:
                 echo "Waiting for the AI status URL to be ready. ($URL_READY)"
                 sleep $SLEEP
                 URL=$(oc -n assisted-installer get agentclusterinstalls.extensions.hive.openshift.io aci-$CLUSTER_NAME-lab -o=jsonpath="{.status.debugInfo.eventsURL}")
-                URL_READY==$(echo $URL | awk -F ":" '{print $1}')
+                URL_READY=$(echo $URL | awk -F ":" '{print $1}')
               done
               INSTALL_STATUS="Waiting for install to complete"
               while [ "$INSTALL_STATUS" != "Successfully finished installing cluster" ]; do
