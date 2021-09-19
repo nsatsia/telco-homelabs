@@ -17,8 +17,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - image: lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
-          imagePullPolicy: Always
-          # imagePullPolicy: IfNotPresent
+          imagePullPolicy: IfNotPresent
           name: mcp-wait-job
           env:
             - name: SLEEP
