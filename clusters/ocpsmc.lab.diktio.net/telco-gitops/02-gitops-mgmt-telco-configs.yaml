@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
- name: mgmt-telco-shift-zone
+ name: mgmt-telco-diktio-net
  namespace: telco-gitops
 spec:
   generators:
