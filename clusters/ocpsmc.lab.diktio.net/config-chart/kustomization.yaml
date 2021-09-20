@@ -10,4 +10,4 @@ metadata:
 #  argocd.argoproj.io/sync-wave: "30"
 
 resources:
-  - 05-telco-gitops-ztp.yaml
+  - 05-telco-gitops-chart.yaml
