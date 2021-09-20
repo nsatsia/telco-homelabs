@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-{{ .Values.name }}-{{ .Values.global.name }}
+  namespace: assisted-installer
+data:
+  username: {{ .Values.bmc_username | b64enc }}
+  password: {{ .Values.bmc_password | b64enc }}
+type: Opaque
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: '{{ .Values.name }}'-{{ .Values.global.name }}
+  namespace: assisted-installer
+  labels:
+    # InfraEnv to use
+    infraenvs.agent-install.openshift.io: "infraenv-core-{{ .Values.global.name }}"
+  annotations:
+    bmac.agent-install.openshift.io/role: {{ .Values.role | default "worker" }}
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
+spec:
+  online: true
+  bootMACAddress: {{ .Values.int1_mac }}
+  automatedCleaningMode: disabled
+  hardwareProfile: libvirt
+  bmc:
+    address: redfish-virtualmedia+{{ .Values.bmc_address }}
+    credentialsName: bmc-{{ .Values.name }}-{{ .Values.global.name }}
+    disableCertificateVerification: True

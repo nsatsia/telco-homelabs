@@ -2,21 +2,21 @@
 apiVersion: agent-install.openshift.io/v1beta1
 kind: InfraEnv
 metadata:
-  name: infraenv-core-ocptest-lab
+  name: infraenv-{{ .Values.global.name }}
   namespace: assisted-installer
 spec:
   #agentLabelSelector:
   #  matchLabels:
-  #    telco-core: core-ocptest-lab
+  #    telco-core: core-{{ .Values.global.name }}
   additionalNTPSources:
     - ntp.iinet.net
   clusterRef:
-    name: cluster-ocptest-lab
+    name: cluster-{{ .Values.global.name }}
     namespace: assisted-installer
   ## (optional pub key)
-  sshAuthorizedKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'
+  sshAuthorizedKey: '{{ .Values.global.ssh_key }}'
   pullSecretRef:
-    name: pull-secret
+    name: {{ .Values.global.pull_secret }}
   # proxy:
   #   httpProxy: http://11.11.11.33
   #   httpsProxy: http://22.22.22.55
@@ -25,4 +25,4 @@ spec:
   ## Custom network configuration
   nmStateConfigLabelSelector:
     matchLabels:
-      cluster-name: ocptest-nmstate
+      cluster-name: {{ .Values.global.name }}-nmstate
