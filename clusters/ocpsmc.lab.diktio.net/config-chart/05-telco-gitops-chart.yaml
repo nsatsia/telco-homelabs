@@ -10,7 +10,7 @@ spec:
       repoURL: https://github.com/nsatsia/telco-homelabs.git
       revision: HEAD 
       directories:
-        - path: clusters/*
+        - path: clusters/*/chart/ocp*
   template:
     metadata:
       name: '01-chart-{{path.basename}}'
@@ -26,4 +26,4 @@ spec:
       source:
         repoURL: https://github.com/nsatsia/telco-homelabs.git
         targetRevision: HEAD
-        path: '{{path}}/chart/ocp*'
+        path: '{{path}}'
