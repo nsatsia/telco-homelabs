@@ -1,7 +1,7 @@
 apiVersion: metal3.io/v1alpha1
 kind: BareMetalHost
 metadata:
-  name: {{ .Values.name }}-{{ .Values.global.name }}
+  name: {{ .Chart.name }}-{{ .Values.global.name }}
   namespace: assisted-installer
   labels:
     # InfraEnv to use
