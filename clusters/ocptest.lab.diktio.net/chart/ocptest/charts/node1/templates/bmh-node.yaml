@@ -5,7 +5,7 @@ metadata:
   namespace: assisted-installer
   labels:
     # InfraEnv to use
-    infraenvs.agent-install.openshift.io: "infraenv-core-{{ .Values.global.name }}"
+    infraenvs.agent-install.openshift.io: "infraenv-{{ .Values.global.name }}"
   annotations:
     bmac.agent-install.openshift.io/role: {{ .Values.role | default "worker" }}
     inspect.metal3.io: disabled
