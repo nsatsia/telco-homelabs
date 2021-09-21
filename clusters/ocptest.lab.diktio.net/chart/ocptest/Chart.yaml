@@ -24,18 +24,16 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 #  repository: "file://../node1"
+#  repository: node1
 
 dependencies:
 - name: node1
   version: "0.0.1"
-  repository: node1
   alias: master1
 - name: node1
   version: "0.0.1"
-  repository: node1
   alias: master2
 - name: node1
   version: "0.0.1"
-  repository: node1
   alias: master3
 
