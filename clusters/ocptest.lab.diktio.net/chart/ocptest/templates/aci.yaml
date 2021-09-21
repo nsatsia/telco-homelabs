@@ -18,10 +18,10 @@ spec:
 #    name: cm-overrides-ran-skylark-cars-lab
   networking:
     clusterNetwork:
-      - cidr: {{ .Values.clusternetwork | quote }}
+      - cidr: {{ .Values.global.clusternetwork | quote }}
         hostPrefix: 23
     serviceNetwork:
-      -  {{ .Values.servicenetwork | quote }}
+      -  {{ .Values.global.servicenetwork | quote }}
   provisionRequirements:
     controlPlaneAgents: 3
 #    workerAgents: 2
