@@ -1,0 +1,12 @@
+name: "test1"
+role: test
+bond0_IP: "192.xx.129.23"
+int1_name: "enp1s0"
+int1_mac: "52:54:dd:e9:0e:fd"
+int2_name: "enp2s0"
+int2_mac: "52:54:ee:e9:0e:fd"
+int3_name: "enp3s0"
+int3_mac: "52:54:ff:e9:0e:fd"
+bmc_username: "ADMIN"
+bmc_password: "Redhat01"
+bmc_address: http://192.19.130.14:8080/redfish/v1/Systems/d78ae290-8f52-4c78-8b82-de17a00aae55
