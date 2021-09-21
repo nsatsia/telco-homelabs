@@ -1,3 +1,4 @@
+---
 global:
   name: ocptest
   pull_secret: pull-secret
