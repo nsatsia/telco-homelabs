@@ -67,7 +67,7 @@ spec:
   automatedCleaningMode: disabled
   hardwareProfile: libvirt
   bmc:
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/f84f2702-b86f-4561-8c3a-da6780c80d53
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/d76ae290-8f52-4c78-8b82-de17a00aae55
     credentialsName: bmc-master1-ocptest-lab
     disableCertificateVerification: True
 ---
@@ -88,7 +88,7 @@ spec:
   automatedCleaningMode: disabled
   hardwareProfile: libvirt
   bmc:
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/bc7b9994-6b56-473d-9af3-f30214cd97ca
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/e1b179ce-0392-4c0b-b8a4-d0fd362b6687
     credentialsName: bmc-master2-ocptest-lab
     disableCertificateVerification: True
 ---
@@ -109,6 +109,6 @@ spec:
   automatedCleaningMode: disabled
   hardwareProfile: libvirt
   bmc:
-    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/648cc9ec-fb18-4ab6-9c05-6feb63a76403
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/feead04d-683e-4b0c-ab7f-e300b0c93177
     credentialsName: bmc-master3-ocptest-lab
     disableCertificateVerification: True
