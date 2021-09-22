@@ -26,6 +26,20 @@ spec:
           slaves:
           - {{ .Values.int1_name }}
           - {{ .Values.int2_name }}
+      - name: {{ .Values.int1_name }}
+        type: ethernet
+        state: up
+        mtu: 8996
+        ipv4:
+          enabled: false
+          dhcp: false
+      - name: {{ .Values.int2_name }}
+        type: ethernet
+        state: ip
+        mtu: 8996
+        ipv4:
+          enabled: false
+          dhcp: false
       - name: {{ .Values.int3_name }}
         type: ethernet
         state: down
