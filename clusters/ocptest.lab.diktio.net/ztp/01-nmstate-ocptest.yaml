@@ -25,8 +25,8 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0
-          # - enp2s0
-      - name: enp2s0
+          - enp2s0
+      - name: enp3s0
         type: ethernet
         state: down
         mtu: 8996
@@ -47,6 +47,8 @@ spec:
       macAddress: 52:54:00:e9:0e:fd
     - name: "enp2s0"
       macAddress: 52:54:01:e9:0e:fd
+    - name: "enp3s0"
+      macAddress: 52:54:02:e9:0e:fd
 ---
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
@@ -74,8 +76,8 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0
-          # - enp2s0
-      - name: enp2s0
+          - enp2s0
+      - name: enp3s0
         type: ethernet
         state: down
         mtu: 8996
@@ -96,6 +98,8 @@ spec:
       macAddress: 52:54:00:96:aa:61
     - name: "enp2s0"
       macAddress: 52:54:01:96:aa:61
+    - name: "enp3s0"
+      macAddress: 52:54:02:96:aa:61
 ---
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
@@ -123,8 +127,8 @@ spec:
             miimon: '150'
           slaves:
           - enp1s0
-          #- enp2s0
-      - name: enp2s0
+          - enp2s0
+      - name: enp3s0
         type: ethernet
         state: down
         mtu: 8996
@@ -145,6 +149,8 @@ spec:
       macAddress: 52:54:00:65:65:56
     - name: "enp2s0"
       macAddress: 52:54:01:65:65:56
+    - name: "enp3s0"
+      macAddress: 52:54:02:65:65:56
 ---
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
