@@ -37,7 +37,7 @@ spec:
           enabled: false
         ipv4:
           enabled: false
-          dhcp: false
+          #dhcp: false
       - name: {{ .Values.int2_name }}
         type: ethernet
         state: ip
@@ -46,16 +46,16 @@ spec:
           enabled: false
         ipv4:
           enabled: false
-          dhcp: false
+          #dhcp: false
       - name: {{ .Values.int3_name }}
         type: ethernet
-        state: down
+        state: up
         mtu: 8996
         ipv6:
           enabled: false
         ipv4:
           enabled: false
-          dhcp: false
+          #dhcp: false
     dns-resolver:
       config:
         server:
