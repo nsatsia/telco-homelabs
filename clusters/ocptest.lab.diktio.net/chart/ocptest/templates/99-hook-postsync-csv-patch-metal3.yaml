@@ -24,8 +24,8 @@ spec:
           env:
             - name: SLEEP
               value: "3"
-            # Assumes ACI name is aci-<cluster-name>-lab>
-            # Assumes secret name is cluster-<cluster_name>-lab-admin-kubeconfig
+            # Assumes ACI name is aci-<cluster-name>
+            # Assumes secret name is cluster-<cluster_name>-admin-kubeconfig
             - name: CLUSTER_NAME
               value: "ocptest"
           command:
@@ -37,7 +37,7 @@ spec:
               while [ "$URL_READY" != "https" ]; do
                 echo "Waiting for the AI status URL to be ready. ($URL_READY)"
                 sleep $SLEEP
-                URL=$(oc -n assisted-installer get agentclusterinstalls.extensions.hive.openshift.io aci-$CLUSTER_NAME-lab -o=jsonpath="{.status.debugInfo.eventsURL}")
+                URL=$(oc -n assisted-installer get agentclusterinstalls.extensions.hive.openshift.io aci-$CLUSTER_NAME -o=jsonpath="{.status.debugInfo.eventsURL}")
                 URL_READY=$(echo $URL | awk -F ":" '{print $1}')
               done
               INSTALL_STATUS="Waiting for install to complete"
@@ -47,7 +47,7 @@ spec:
                 # INSTALL_STATUS=$( curl -s -k $URL | jq .[-1:][0].message )
                 INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
               done
-              oc get secret -n assisted-installer cluster-$CLUSTER_NAME-lab-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
+              oc get secret -n assisted-installer cluster-$CLUSTER_NAME-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
               ARGOPW=$(oc get secret -n telco-gitops telco-gitops-cluster -o go-template='\{\{index .data "admin.password"\}\}' | base64 -d)
               argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
