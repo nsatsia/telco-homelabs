@@ -24,9 +24,9 @@ spec:
           options:
             miimon: '150'
           slaves:
-          - {{ .Values.int1_name | quote }}
-          - {{ .Values.int2_name | quote }}
-      - name: {{ .Values.int3_name | quote }}
+          - {{ .Values.int1_name }}
+          - {{ .Values.int2_name }}
+      - name: {{ .Values.int3_name }}
         type: ethernet
         state: down
         mtu: 8996
