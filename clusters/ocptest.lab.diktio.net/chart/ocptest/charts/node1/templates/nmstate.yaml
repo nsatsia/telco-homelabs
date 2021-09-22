@@ -25,9 +25,10 @@ spec:
           mode: active-backup
           options:
             miimon: '150'
+            primary: {{ .Values.int1_name | quote }}
           slaves:
           - {{ .Values.int1_name }}
-          # - {{ .Values.int2_name }}
+          - {{ .Values.int2_name }}
       - name: {{ .Values.int1_name }}
         type: ethernet
         state: up
