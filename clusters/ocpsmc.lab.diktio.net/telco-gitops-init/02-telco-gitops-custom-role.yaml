@@ -1,0 +1,30 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  name: telco-gitops-custom-role
+rules:
+- apiGroups:
+  - agent-install.openshift.io
+  resources:
+  - '*'
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: telco-gitops-custom-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: telco-gitops-custom-role
+subjects:
+  - kind: ServiceAccount
+    name: telco-gitops-argocd-application-controller
+    namespace: telco-gitops
+  - kind: ServiceAccount
+    name: telco-gitops-argocd-server
+    namespace: telco-gitops
