@@ -14,8 +14,10 @@ spec:
     repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
     targetRevision: HEAD
     path: clusters/ocpsmc.lab.diktio.net
-    directory:
-      recurse: false
+    #Commenting recurse=false as it is the defult and causes an out of sync as it is omitted in the manifest
+    # https://github.com/argoproj/argo-cd/issues/4501
+    #directory:
+    #  recurse: false
   # Sync policy
   syncPolicy:
     automated: 
