@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
     targetRevision: HEAD
-    path: telco-gitops-mgmt/mgmt.telco.shift.zone
+    path: clusters/ocpsmc.lab.diktio.net
     directory:
       recurse: false
   # Sync policy
