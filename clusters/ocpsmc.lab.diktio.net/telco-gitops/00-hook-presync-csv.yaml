@@ -8,7 +8,7 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   name: csv-wait-job
   # generateName: csv-wait-job-
-  namespace: telco-gitops
+  namespace: openshift-operators
 spec:
   template:
     spec:
