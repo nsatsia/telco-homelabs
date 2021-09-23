@@ -20,7 +20,7 @@ bases:
   # OpenShift GitOps
   - ../../base/operators/openshift-gitops
   # Configure telco-gitops for cluster
-  - ./telco-gitops
+  #- ./telco-gitops
 
 resources:
   #- 01-master-create-lvs-for-lso.yaml
