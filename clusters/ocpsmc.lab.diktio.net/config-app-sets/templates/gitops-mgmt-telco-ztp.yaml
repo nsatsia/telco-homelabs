@@ -7,7 +7,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: {{ Values.base_git_url }}
+      repoURL: {{ .Values.base_git_url }}
       revision: HEAD 
       directories:
         - path: clusters/*
@@ -24,6 +24,6 @@ spec:
         server: 'https://kubernetes.default.svc'
       project: default
       source:
-        repoURL: {{ Values.base_git_url }}
+        repoURL: {{ .Values.base_git_url }}
         targetRevision: HEAD
         path: '{{ "{{" }}path{{ "}}" }}/ztp'

@@ -9,7 +9,7 @@ spec:
     - git:
         directories:
           - path: clusters/ocpsmc.lab.diktio.net/operator-*
-        repoURL: '{{ Values.base_git_url }}'
+        repoURL: '{{ .Values.base_git_url }}'
         revision: HEAD
   template:
     metadata:
@@ -22,5 +22,5 @@ spec:
       project: default
       source:
         path: '{{ "{{" }}path{{ "}}" }}'
-        repoURL: '{{ Values.base_git_url }}'
+        repoURL: '{{ .Values.base_git_url }}'
         targetRevision: HEAD
