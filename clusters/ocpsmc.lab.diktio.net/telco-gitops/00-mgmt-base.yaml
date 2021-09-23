@@ -11,7 +11,7 @@ spec:
     namespace: 'telco-gitops'
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
+    repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
     targetRevision: HEAD
     path: clusters/ocpsmc.lab.diktio.net
     directory:
