@@ -1,0 +1,26 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+ name: mgmt-telco-operators
+ namespace: telco-gitops
+spec:
+  generators:
+    - git:
+        directories:
+          - path: clusters/ocpsmc.lab.diktio.net/operator-*
+        repoURL: '{{ Values.base_git_url }}'
+        revision: HEAD
+  template:
+    metadata:
+      name: '00-mgmt-{{ "{{" }}path.basename{{ "}}" }}'
+      namespace: telcot-gitops
+    spec:
+      destination:
+        namespace: telco-gitops
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        path: '{{ "{{" }}path{{ "}}" }}'
+        repoURL: '{{ Values.base_git_url }}'
+        targetRevision: HEAD

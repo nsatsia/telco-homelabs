@@ -3,22 +3,21 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   annotations:
-    # argocd.argoproj.io/sync-wave: "10"
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  name: csv-wait-job
-  # generateName: csv-wait-job-
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: csv-wait-gitops-operator
   namespace: telco-gitops
 spec:
   template:
     spec:
       containers:
-        - image: registry.redhat.io/openshift4/ose-cli:latest
+        - image: {{ Values.hook_image }}
           command:
             - /bin/bash
             - -c
             - |
-              echo "ArgoCD PostSync Hook"
+              echo "ArgoCD Hook"
               CSV_STATUS="Pausing $SLEEP seconds..."
               while [ "$CSV_STATUS" != "Succeeded" ]; do
                 echo "Waiting for the GitOps Operator to be ready. ($CSV_STATUS)"

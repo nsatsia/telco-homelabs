@@ -2,18 +2,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: telco-gitops-chart
+  name: telco-gitops-ztp
   namespace: telco-gitops
 spec:
   generators:
   - git:
-      repoURL: https://github.com/nsatsia/telco-homelabs.git
+      repoURL: {{ Values.base_git_url }}
       revision: HEAD 
       directories:
-        - path: clusters/*/chart/ocp*
+        - path: clusters/*
   template:
     metadata:
-      name: '01-chart-{{path.basename}}'
+      name: '01-ztp-{{ "{{" }}path.basename{{ "}}" }}'
       namespace: telco-gitops
     spec:
 #      syncPolicy:
@@ -24,6 +24,6 @@ spec:
         server: 'https://kubernetes.default.svc'
       project: default
       source:
-        repoURL: https://github.com/nsatsia/telco-homelabs.git
+        repoURL: {{ Values.base_git_url }}
         targetRevision: HEAD
-        path: '{{path}}'
+        path: '{{ "{{" }}path{{ "}}" }}/ztp'
