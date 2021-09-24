@@ -8,7 +8,7 @@ metadata:
     uninstall.ocs.openshift.io/mode: graceful
   name: ocs-storagecluster
   namespace: openshift-storage
-  uid: de53d9e1-5125-4a61-a050-9287aa95fc97  
+  #uid: de53d9e1-5125-4a61-a050-9287aa95fc97  
   finalizers:
     - storagecluster.ocs.openshift.io
 spec:
