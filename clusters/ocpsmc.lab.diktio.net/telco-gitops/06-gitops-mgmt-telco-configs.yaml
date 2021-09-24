@@ -27,10 +27,10 @@ spec:
           # Sync policy
       syncPolicy:
         automated: 
-          prune: false
+          #prune: false
           selfHeal: true 
           # Allows deleting all application resources during automatic syncing ( false by default ).
-          allowEmpty: false 
+          #allowEmpty: false 
         syncOptions:
           # (equivalent to 'kubectl apply --validate=false')
           - Validate=false
