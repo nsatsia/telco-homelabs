@@ -24,3 +24,42 @@ spec:
         path: '{{ "{{" }}path{{ "}}" }}'
         repoURL: '{{ .Values.base_git_url }}'
         targetRevision: HEAD
+          # Sync policy
+  syncPolicy:
+    automated: 
+      prune: false
+      selfHeal: true 
+      # Allows deleting all application resources during automatic syncing ( false by default ).
+      allowEmpty: false 
+    syncOptions:
+      # (equivalent to 'kubectl apply --validate=false')
+      - Validate=false
+      - CreateNamespace=true
+      # Supported policies are background, foreground and orphan.
+      - PrunePropagationPolicy=foreground
+      # Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
+      - PruneLast=true
+    retry:
+      # unlimited if less than 0
+      limit: -1
+      backoff:
+        # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        duration: 1m
+        # a factor to multiply the base duration after each failed retry
+        factor: 2
+        # the maximum amount of time allowed for the backoff strategy
+        maxDuration: 3m
+  # Ignore differences at the specified json pointers
+  # ignoreDifferences:
+  # - group: apps
+  #   kind: Deployment
+  #   jsonPointers:
+  #   - /spec/replicas
+  # ignoreDifferences:
+  #    - group: apiextensions.k8s.io
+  #      name: pcap.fennecproject.io
+  #      kind: CustomResourceDefinition
+  #      jsonPointers:
+  #        - /spec/podLabel
+  #        - /spec/interfaceName
+  #        - /spec/packetCount
