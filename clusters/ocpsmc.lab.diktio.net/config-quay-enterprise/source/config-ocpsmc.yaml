@@ -12,3 +12,12 @@ TAG_EXPIRATION_OPTIONS:
 TEAM_RESYNC_STALE_TIME: 60m
 TESTING: false
 SERVER_HOSTNAME: lab-registry.ocpsmc.lab.diktio.net
+LDAP_EMAIL_ATTR: "mail"
+LDAP_URI: "ldap://idm.lab.diktio.net"
+LDAP_ALLOW_INSECURE_FALLBACK: True
+LDAP_BASE_DN: "dc=lab,dc=diktio,dc=net"
+LDAP_USER_FILTER: "cn=users,cn=accounts"
+LDAP_USER_RDN: ou=profile
+LDAP_UID_ATTR: "uid"
+LDAP_ADMIN_DN: "uid=ocp-binddn,cn=sysaccounts,cn=etc,dc=lab,dc=diktio,dc=net" 
+LDAP_ADMIN_PASSWD: "Redhat01"
