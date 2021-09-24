@@ -10,7 +10,7 @@ metadata:
       controller: true
       kind: StorageCluster
       name: ocs-storagecluster
-      uid: ''
+      uid: 'bf68abb1-0ca1-491a-b268-78e9ca78aa97'
   #    uid: de53d9e1-5125-4a61-a050-9287aa95fc97
   #finalizers:
   #  - cephblockpool.ceph.rook.io
