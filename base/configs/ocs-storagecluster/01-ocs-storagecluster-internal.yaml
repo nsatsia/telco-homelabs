@@ -1,35 +1,4 @@
 ---
-apiVersion: ceph.rook.io/v1
-kind: CephBlockPool
-metadata:
-  name: ocs-storagecluster-cephblockpool
-  namespace: openshift-storage
-  ownerReferences:
-    - apiVersion: ocs.openshift.io/v1
-      blockOwnerDeletion: true
-      controller: true
-      kind: StorageCluster
-      name: ocs-storagecluster
-      uid: 'bf68abb1-0ca1-491a-b268-78e9ca78aa97'
-  #    uid: de53d9e1-5125-4a61-a050-9287aa95fc97
-  #finalizers:
-  #  - cephblockpool.ceph.rook.io
-spec:
-  compressionMode: none
-  enableRBDStats: true
-  erasureCoded:
-    codingChunks: 0
-    dataChunks: 0
-  failureDomain: host
-  mirroring: {}
-  quotas: {}
-  replicated:
-    replicasPerFailureDomain: 1
-    size: 3
-    targetSizeRatio: 0.49
-  statusCheck:
-    mirror: {}
----
 apiVersion: ocs.openshift.io/v1
 kind: StorageCluster
 metadata:
@@ -62,26 +31,3 @@ spec:
       preparePlacement: {}
       replica: 1
       resources: {}
-#      resources:
-#        limits:
-#          cpu: "2"
-#          memory: "5Gi"
-#        requests:
-#          cpu: "2"
-#          memory: "5Gi"
-
-  encryption:
-    kms: {}
-  monDataDirHostPath: /var/lib/rook
-  managedResources:
-    cephBlockPools: {}
-    cephConfig: {}
-    cephDashboard: {}
-    cephFilesystems: {}
-    cephObjectStoreUsers: {}
-    cephObjectStores: {}
-  arbiter: {}
-  nodeTopologies: {}
-  externalStorage: {}
-  version: 4.8.0
-  flexibleScaling: true
