@@ -26,7 +26,7 @@ spec:
         targetRevision: HEAD
           # Sync policy
       syncPolicy:
-        automated: 
+        #automated: 
           #prune: false
           #selfHeal: true 
           # Allows deleting all application resources during automatic syncing ( false by default ).
