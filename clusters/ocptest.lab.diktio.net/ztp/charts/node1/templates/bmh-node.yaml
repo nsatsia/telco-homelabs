@@ -9,7 +9,7 @@ metadata:
   annotations:
     bmac.agent-install.openshift.io/role: {{ .Values.role | default "worker" }}
     inspect.metal3.io: disabled
-    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
+    # bmac.agent-install.openshift.io/installer-args: '["-n"]' 
 spec:
   online: true
   bootMACAddress: {{ .Values.int1_mac }}
