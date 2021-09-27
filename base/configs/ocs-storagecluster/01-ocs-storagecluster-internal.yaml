@@ -14,7 +14,7 @@ metadata:
 spec:
   storageDeviceSets:
     - config: {}
-      count: 3
+      count: 1
       dataPVCTemplate:
         metadata: {}
         spec:
@@ -29,5 +29,5 @@ spec:
       name: ocs-deviceset-ocs-local-volume-set
       placement: {}
       preparePlacement: {}
-      replica: 1
+      replica: 3
       resources: {}
