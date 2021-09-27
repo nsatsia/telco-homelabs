@@ -13,7 +13,7 @@ spec:
           values:
           - ""
   storageClassDevices:
-    - storageClassName: localblock
+    - storageClassName: ocs-local-volume-set
       volumeMode: Block
       devicePaths:
         - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNF0R314773B
