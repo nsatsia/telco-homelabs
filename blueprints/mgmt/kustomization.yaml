@@ -26,9 +26,9 @@ bases:
   # OpenShift Container storage
   - ../../base/operators/openshift-container-storage
   # Assisted Installer (now Infrastructre Operator)
-#  - ../../base/operators/assisted-installer
+  - ../../base/operators/assisted-installer
   # Quay Enterprise
-#  - ../../base/operators/quay-enterprise-operator
+  - ../../base/operators/quay-enterprise-operator
   # OpenShift Logging
   # - ../../base/operators/openshift-logging
   # OpenShiftVirt
