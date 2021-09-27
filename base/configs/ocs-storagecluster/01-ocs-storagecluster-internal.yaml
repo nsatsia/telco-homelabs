@@ -12,6 +12,7 @@ metadata:
   #finalizers:
   #  - storagecluster.ocs.openshift.io
 spec:
+  monDataDirHostPath: /var/lib/rook
   storageDeviceSets:
     - config: {}
       count: 1
