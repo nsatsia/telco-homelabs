@@ -20,7 +20,7 @@ bases:
   # Hive
   - ../../base/operators/hive
   # Local Storage Operator
-  - ../../base/operators/local-storage-operator
+#  - ../../base/operators/local-storage-operator
   # LSO auto-discovery label  DELETE?
   #- ../lso
   # OpenShift Container storage
