@@ -7,6 +7,3 @@ resources:
   # - 01-ocs-storagecluster-external.yaml
   - 01-ocs-storagecluster-internal.yaml
   - 99-hook-postsync-csv-class-default.yaml
-
-patchesStrategicMerge:
-  - 01-patch-ocs-label-nodes.yaml

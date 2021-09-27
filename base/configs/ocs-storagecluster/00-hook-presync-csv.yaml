@@ -30,6 +30,10 @@ spec:
                 sleep $SLEEP
                 CSV_STATUS=$( oc get localvolumeset -n openshift-local-storage ocs-local-volume-set -o jsonpath={..status.conditions[-1:].type} )
               done
+              # LABEL all nodes
+              for i in $(oc get nodes | egrep -v "NAME" | awk '{print $1}')
+                do oc label node $i cluster.ocs.openshift.io/openshift-storage=''
+              done
               echo "All done! Hooray!"
           imagePullPolicy: IfNotPresent
           name: mcp-wait-job
