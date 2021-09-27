@@ -1,0 +1,21 @@
+---
+apiVersion: local.storage.openshift.io/v1
+kind: LocalVolume
+metadata:
+  name: local-block
+  namespace: openshift-local-storage
+spec:
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+        - key: cluster.ocs.openshift.io/openshift-storage
+          operator: In
+          values:
+          - ""
+  storageClassDevices:
+    - storageClassName: localblock
+      volumeMode: Block
+      devicePaths:
+        - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNF0R314773B
+        - /dev/disk/by-id/nvme-CT1000P5SSD8_20282B783770
+        - /dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S6P7NG0R851105J
