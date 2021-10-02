@@ -16,7 +16,7 @@ bases:
   # OpenShift Serverless
   - ../../base/operators/openshift-serverless
   # Red Hat Advanced Cluster Manager for Kubernetes
-  # - ../../base/operators/advanced-cluster-management
+  - ../../base/operators/advanced-cluster-management
   # Hive
   #- ../../base/operators/hive
   # Local Storage Operator
@@ -26,7 +26,7 @@ bases:
   # OpenShift Container storage
   - ../../base/operators/openshift-container-storage
   # Assisted Installer (now Infrastructre Operator)
-  #- ../../base/operators/assisted-installer
+  - ../../base/operators/assisted-installer
   # Quay Enterprise
   - ../../base/operators/quay-enterprise-operator
   # OpenShift Logging
