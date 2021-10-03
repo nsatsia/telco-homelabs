@@ -3,7 +3,7 @@ apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
 metadata:
   name: nmstate-{{ .Values.name }}-{{ .Values.global.name }}
-  namespace: assisted-installer
+  namespace: {{ .Values.global.namespace }}
   labels:
     cluster-name: {{ .Values.global.name }}-nmstate
 spec:
