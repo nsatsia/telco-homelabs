@@ -3,7 +3,7 @@ apiVersion: agent-install.openshift.io/v1beta1
 kind: InfraEnv
 metadata:
   name: infraenv-{{ .Values.global.name }}
-  namespace: assisted-installer
+  namespace: {{ .Values.global.namespace }}
 spec:
   #agentLabelSelector:
   #  matchLabels:
@@ -12,7 +12,7 @@ spec:
     - ntp.iinet.net
   clusterRef:
     name: cluster-{{ .Values.global.name }}
-    namespace: assisted-installer
+    namespace: {{ .Values.global.namespace }}
   ## (optional pub key)
   sshAuthorizedKey: '{{ .Values.global.ssh_key }}'
   pullSecretRef:
