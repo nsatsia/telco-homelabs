@@ -19,10 +19,10 @@ spec:
             - |
               echo "OCS PreSync Hook"
               CSV_STATUS="Pausing $SLEEP seconds..."
-              while [ "$CSV_STATUS" != "InstallSucceeded" ]; do
+              while [ "$CSV_STATUS" != "ReconcileCompleted" ]; do
                 echo "Waiting for the OCS Operator to be ready. ($CSV_STATUS)"
                 sleep $SLEEP
-                CSV_STATUS=$( oc get csv -n openshift-operators -l operators.coreos.com/quay-operator.openshift-operators='' -o jsonpath={..status.conditions[-1:].reason} )
+                CSV_STATUS=$( oc get -n openshift-storage StorageCluster ocs-storagecluster -o jsonpath={..status.conditions[-1:].reason} )
               done
               echo "All done! Hooray!"
           imagePullPolicy: IfNotPresent
