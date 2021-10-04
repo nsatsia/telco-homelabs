@@ -98,7 +98,7 @@ curl -L -o argocd https://github.com/argoproj/argo-cd/releases/download/v2.0.5/a
 
     ```bash
     # User admin, password from above
-    argocd login telco-gitops-server-telco-gitops.apps.ocpmgmt.lab.diktio.net
+    argocd login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
     ---argocd login https://api.mgmt.telco.shift.zone:6443 --name admin---
     ```
 
