@@ -1,0 +1,7 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterImageSet
+metadata:
+  name: openshift-v4.8.11-mirror
+spec:
+  releaseImage: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4810:4.8.11-x86_64
