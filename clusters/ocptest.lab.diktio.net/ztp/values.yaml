@@ -26,7 +26,7 @@ master1:
   int3_mac: "52:54:02:e9:0e:fd"
   bmc_username: ADMIN
   bmc_password: Redhat01
-  bmc_address: http://192.19.130.14:8080/redfish/v1/Systems/d76ae290-8f52-4c78-8b82-de17a00aae55
+  bmc_address: http://192.19.128.14:8080/redfish/v1/Systems/d76ae290-8f52-4c78-8b82-de17a00aae55
 
 master2:
   name: "master2"
@@ -40,7 +40,7 @@ master2:
   int3_mac: "52:54:02:96:aa:61"
   bmc_username: ADMIN
   bmc_password: Redhat01
-  bmc_address: http://192.19.130.14:8080/redfish/v1/Systems/e1b179ce-0392-4c0b-b8a4-d0fd362b6687
+  bmc_address: http://192.19.128.14:8080/redfish/v1/Systems/e1b179ce-0392-4c0b-b8a4-d0fd362b6687
 
 master3:
   name: "master3"
@@ -54,4 +54,4 @@ master3:
   int3_mac: "52:54:02:65:65:56"
   bmc_username: ADMIN
   bmc_password: Redhat01
-  bmc_address: http://192.19.130.14:8080/redfish/v1/Systems/feead04d-683e-4b0c-ab7f-e300b0c93177
+  bmc_address: http://192.19.128.14:8080/redfish/v1/Systems/feead04d-683e-4b0c-ab7f-e300b0c93177
