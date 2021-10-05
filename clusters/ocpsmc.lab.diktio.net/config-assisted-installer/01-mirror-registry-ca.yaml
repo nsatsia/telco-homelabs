@@ -62,3 +62,10 @@ data:
 
        [[registry.mirror]]
        location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4811"
+    [[registry]]
+       prefix = ""
+       location = "registry.redhat.io/rhacm2"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia"
