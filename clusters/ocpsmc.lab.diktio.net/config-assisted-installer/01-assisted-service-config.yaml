@@ -6,6 +6,8 @@ metadata:
   name: assisted-service-config
   # namespace: assisted-installer
   namespace: open-cluster-management
+  labels:
+    app: assisted-service
 data:
   LOG_LEVEL: "debug"
   SUPPORT_L2: "false"
@@ -14,3 +16,5 @@ data:
   PUBLIC_CONTAINER_REGISTRIES: "lab-registry.ocpsmc.lab.diktio.net"
   CONTROLLER_IMAGE: "quay.io/ocpmetal/assisted-installer-controller@sha256:20f38f2f29f7bded275ee27ed2702b391e8e09b034fd96bf7bfd1b158978c38b"
   
+
+
