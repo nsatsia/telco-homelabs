@@ -64,8 +64,8 @@ data:
        location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4811"
     [[registry]]
        prefix = ""
-       location = "registry.redhat.io/rhacm2"
+       location = "registry.redhat.io"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "lab-registry.ocpsmc.lab.diktio.net/nsatsia"
+       location = "hypervisor1.lab.diktio.net:5000/operator-mirror/nsatsia/redhat-operator-index"
