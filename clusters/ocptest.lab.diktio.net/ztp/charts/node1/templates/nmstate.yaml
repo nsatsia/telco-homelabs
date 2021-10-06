@@ -40,7 +40,7 @@ spec:
           #dhcp: false
       - name: {{ .Values.int2_name }}
         type: ethernet
-        state: ip
+        state: up
         mtu: 8996
         ipv6:
           enabled: false
