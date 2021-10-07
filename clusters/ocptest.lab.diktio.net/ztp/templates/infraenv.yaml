@@ -25,4 +25,5 @@ spec:
   ## Custom network configuration
   nmStateConfigLabelSelector:
     matchLabels:
-      cluster-name: {{ .Values.global.name }}-nmstate
+      #cluster-name: {{ .Values.global.name }}-nmstate
+      infraenvs.agent-install.openshift.io: infraenv-{{ .Values.global.name }}
