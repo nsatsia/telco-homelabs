@@ -17,13 +17,12 @@ spec:
             - /bin/bash
             - -c
             - |
-              echo "OCS PostSync Hook"
-              WAIT_CLASS="ocs-storagecluster-ceph-rbd"
-              OCS_CLASS="Pausing $SLEEP seconds..."
-              while [ "$OCS_CLASS" != "$WAIT_CLASS" ]; do
-                echo "Waiting for the OCS Storage Class to be ready. ($OCS_CLASS)"
+              echo "OCS PreSync Hook"
+              CSV_STATUS="Pausing $SLEEP seconds..."
+              while [ "$CSV_STATUS" != "ReconcileCompleted" ]; do
+                echo "Waiting for the OCS Operator to be ready. ($CSV_STATUS)"
                 sleep $SLEEP
-                OCS_CLASS=$( oc get storageclass | egrep $WAIT_CLASS | awk '{print $1}' )
+                CSV_STATUS=$( oc get -n openshift-storage StorageCluster ocs-storagecluster -o jsonpath={..status.conditions[-1:].reason} )
               done
               echo "All done! Hooray!"
           imagePullPolicy: IfNotPresent
