@@ -11,4 +11,4 @@ spec:
   #
   # enable self managed cluster
   # This uses the "local-cluster" namespace
-  disableHubSelfManagement: false
+  disableHubSelfManagement: true
