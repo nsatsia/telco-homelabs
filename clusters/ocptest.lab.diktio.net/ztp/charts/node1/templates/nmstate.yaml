@@ -36,15 +36,6 @@ spec:
         ipv4:
           enabled: false
           #dhcp: false
-    dns-resolver:
-      config:
-        server:
-          - '{{ .Values.global.dns }}'
-    routes:
-      config:
-        - destination: 0.0.0.0/0
-          next-hop-address: {{ .Values.global.default_router }}
-          next-hop-interface: bond0
   interfaces:
     - name: {{ .Values.int1_name | quote }}
       macAddress: {{ .Values.int1_mac | quote }}
