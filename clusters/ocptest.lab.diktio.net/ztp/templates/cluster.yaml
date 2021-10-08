@@ -18,6 +18,7 @@ spec:
     agentBareMetal:
       agentSelector:
         matchLabels:
-          telco-core: core-{{ .Values.global.name }}
+          #telco-core: core-{{ .Values.global.name }}
+          infraenvs.agent-install.openshift.io: infraenv-{{ .Values.global.name }}
   pullSecretRef:
     name: {{ .Values.global.pull_secret }}
