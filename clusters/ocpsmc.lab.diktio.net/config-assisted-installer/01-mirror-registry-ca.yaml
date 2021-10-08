@@ -69,3 +69,10 @@ data:
 
        [[registry.mirror]]
        location = "hypervisor1.lab.diktio.net:5000/operator-mirror/nsatsia/redhat-operator-index/rhacm2"
+    [[registry]]
+       prefix = ""
+       location = "registry.redhat.io/redhat"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "hypervisor1.lab.diktio.net:5000/operator-mirror/nsatsia"
