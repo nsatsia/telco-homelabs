@@ -15,10 +15,6 @@ spec:
         mtu: 8996
         ipv4:
           enabled: true
-          address:
-            - ip: {{ .Values.bond0_IP }}
-              prefix-length: 24
-          dhcp: false
         ipv6:
           enabled: false
         link-aggregation:
@@ -29,15 +25,6 @@ spec:
           slaves:
           - {{ .Values.int1_name }}
           - {{ .Values.int2_name }}
-    dns-resolver:
-      config:
-        server:
-          - '{{ .Values.global.dns }}'
-    routes:
-      config:
-        - destination: 0.0.0.0/0
-          next-hop-address: {{ .Values.global.default_router }}
-          next-hop-interface: bond0
   interfaces:
     - name: {{ .Values.int1_name | quote }}
       macAddress: {{ .Values.int1_mac | quote }}
