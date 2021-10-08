@@ -9,35 +9,37 @@ metadata:
 spec:
   config:
     interfaces:
-      - name: {{ .Values.int1_name }}
-        type: ethernet
+      - name: bond0
+        type: bond
         state: up
-        #mtu: 8996
-        ipv6:
-          enabled: true
+        mtu: 8996
         ipv4:
           enabled: true
-          dhcp: true
-      - name: {{ .Values.int2_name }}
-        type: ethernet
-        state: up
-        #mtu: 8996
+          address:
+            - ip: {{ .Values.bond0_IP }}
+              prefix-length: 24
+          dhcp: false
         ipv6:
-          enabled: true
-        ipv4:
-          enabled: true
-      - name: {{ .Values.int3_name }}
-        type: ethernet
-        state: up
-        #mtu: 8996
-        ipv6:
-          enabled: true
-        ipv4:
-          enabled: true
+          enabled: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '150'
+            primary: {{ .Values.int1_name | quote }}
+          slaves:
+          - {{ .Values.int1_name }}
+          - {{ .Values.int2_name }}
+    dns-resolver:
+      config:
+        server:
+          - '{{ .Values.global.dns }}'
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: {{ .Values.global.default_router }}
+          next-hop-interface: bond0
   interfaces:
     - name: {{ .Values.int1_name | quote }}
       macAddress: {{ .Values.int1_mac | quote }}
     - name: {{ .Values.int2_name | quote }}
       macAddress: {{ .Values.int2_mac | quote }}
-    - name: {{ .Values.int3_name | quote }}
-      macAddress: {{ .Values.int3_mac | quote }}
