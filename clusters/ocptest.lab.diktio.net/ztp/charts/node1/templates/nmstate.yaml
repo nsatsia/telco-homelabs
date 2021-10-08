@@ -25,8 +25,7 @@ spec:
         ipv6:
           enabled: false
         ipv4:
-          enabled: false
-          #dhcp: false
+          enabled: true
       - name: {{ .Values.int3_name }}
         type: ethernet
         state: up
@@ -34,8 +33,7 @@ spec:
         ipv6:
           enabled: false
         ipv4:
-          enabled: false
-          #dhcp: false
+          enabled: true
   interfaces:
     - name: {{ .Values.int1_name | quote }}
       macAddress: {{ .Values.int1_mac | quote }}
