@@ -15,6 +15,7 @@ spec:
         mtu: 8996
         ipv4:
           enabled: true
+          dhcp: true
         ipv6:
           enabled: false
         link-aggregation:
