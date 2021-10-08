@@ -9,6 +9,26 @@ metadata:
 spec:
   config:
     interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        mtu: 8996
+        ipv6:
+          enabled: false
+        ipv4:
+          enabled: true
+          address:
+            - ip: {{ .Values.bond0_IP }}
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '150'
+            primary: {{ .Values.int1_name | quote }}
+          slaves:
+          - {{ .Values.int1_name }}
+          # - {{ .Values.int2_name }}
       - name: {{ .Values.int1_name }}
         type: ethernet
         state: up
@@ -16,8 +36,8 @@ spec:
         ipv6:
           enabled: false
         ipv4:
-          enabled: true
-          dhcp: true
+          enabled: false
+          #dhcp: false
       - name: {{ .Values.int2_name }}
         type: ethernet
         state: up
