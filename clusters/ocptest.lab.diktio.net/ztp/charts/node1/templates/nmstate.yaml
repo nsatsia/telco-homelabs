@@ -12,26 +12,26 @@ spec:
       - name: {{ .Values.int1_name }}
         type: ethernet
         state: up
-        mtu: 8996
+        #mtu: 8996
         ipv6:
-          enabled: false
+          enabled: true
         ipv4:
           enabled: true
           dhcp: true
       - name: {{ .Values.int2_name }}
         type: ethernet
         state: up
-        mtu: 8996
+        #mtu: 8996
         ipv6:
-          enabled: false
+          enabled: true
         ipv4:
           enabled: true
       - name: {{ .Values.int3_name }}
         type: ethernet
         state: up
-        mtu: 8996
+        #mtu: 8996
         ipv6:
-          enabled: false
+          enabled: true
         ipv4:
           enabled: true
   interfaces:
