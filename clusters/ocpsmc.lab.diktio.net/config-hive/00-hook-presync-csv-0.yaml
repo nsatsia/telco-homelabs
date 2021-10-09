@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 
-  name: presync-csv-wait-lso-job
+  name: presync-csv-wait-hive-job
   # generateName: presync-csv-wait-job-
   namespace: telco-gitops
 spec:
@@ -23,7 +23,7 @@ spec:
               while [ "$CSV_STATUS" != "InstallSucceeded" ]; do
                 echo "Waiting for the AI Operator to be ready. ($CSV_STATUS)"
                 sleep $SLEEP
-                CSV_STATUS=$( oc get csv -n openshift-local-storage -l operators.coreos.com/local-storage-operator.openshift-local-storage='' -o jsonpath={..status.conditions[-1:].reason} )
+                CSV_STATUS=$( oc get csv -n openshift-operators -l operators.coreos.com/hive-operator.openshift-operators='' -o jsonpath={..status.conditions[-1:].reason} )
               done
               echo "All done! Hooray!"
           imagePullPolicy: IfNotPresent
