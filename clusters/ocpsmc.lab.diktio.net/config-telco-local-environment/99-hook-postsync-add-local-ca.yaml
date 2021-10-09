@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  name: postsync-csv-wait-class-storage-job
+  name: postsync-wait-cmap-add-ca-job
   namespace: telco-gitops
 spec:
   template:
