@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- 00-hook-presync-local-pull-secret.yaml
+- 01-idm-ca.yaml
+- 99-hook-postsync-add-local-ca.yaml

@@ -1,0 +1,40 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  name: postsync-csv-wait-class-storage-job
+  namespace: telco-gitops
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: registry.redhat.io/openshift4/ose-cli:latest
+          imagePullPolicy: IfNotPresent
+          name: mcp-wait-job
+          env:
+            - name: SLEEP
+              value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "OCS PostSync Hook"
+              DEFAULT_CLASS="ocs-storagecluster-ceph-rbd"
+              CONFIG_MAP="Pausing $SLEEP seconds..."
+              while [ "$CONFIG_MAP" != "registry-ca-idm" ]; do
+                echo "Waiting for the CA COnfigMap to be defined. ($CONFIG_MAP)"
+                sleep $SLEEP
+                CONFIG_MAP=$( oc get ConfigMap -n openshift-config registry-ca-idm -o jsonpath={..metadata.name} )
+              done
+              # Add it to the  additionalTrustedCA
+              oc patch image.config.openshift.io/cluster --patch '{"spec":{"additionalTrustedCA":{"name":"registry-ca-idm"}}}' --type=merge
+              #
+              echo "All done! Hooray!"
