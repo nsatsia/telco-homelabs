@@ -17,9 +17,10 @@ spec:
       serviceAccountName: cli-job-sa
       terminationGracePeriodSeconds: 30
       containers:
-        - image: lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
-          imagePullPolicy: Always
-          # imagePullPolicy: IfNotPresent
+        - image: registry.redhat.io/openshift-gitops-1/argocd-rhel8:latest
+                 #lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
+          #imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           name: mcp-wait-job
           env:
             - name: SLEEP
