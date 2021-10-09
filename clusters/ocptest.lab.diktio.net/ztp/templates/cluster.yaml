@@ -16,7 +16,8 @@ spec:
     version: v1beta1
   platform:
     baremetal:
-      libvirtSSHPrivateKeySecretRef: assisted-deployment-ssh-private-key
+      libvirtSSHPrivateKeySecretRef: 
+        name: assisted-deployment-ssh-private-key
     agentBareMetal:
       agentSelector:
         matchLabels:
