@@ -13,6 +13,7 @@ spec:
     spec:
       containers:
         - image: registry.redhat.io/openshift4/ose-cli:latest
+          imagePullPolicy: IfNotPresent
           command:
             - /bin/bash
             - -c
@@ -24,7 +25,7 @@ spec:
                 sleep $SLEEP
                 CSV_STATUS=$( oc get -n openshift-storage StorageCluster ocs-storagecluster -o jsonpath={..status.conditions[-1:].reason} )
               done
-              echo "All done! Hooray!"          imagePullPolicy: IfNotPresent
+              echo "All done! Hooray!"
           name: mcp-wait-job
           env:
           - name: SLEEP

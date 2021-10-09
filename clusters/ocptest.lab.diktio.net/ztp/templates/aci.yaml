@@ -4,7 +4,7 @@ apiVersion: extensions.hive.openshift.io/v1beta1
 kind: AgentClusterInstall
 metadata:
   name: aci-{{ .Values.global.name }}
-  namespace: assisted-installer
+  namespace: {{ .Values.global.namespace }}
   annotations:
     agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
 spec:

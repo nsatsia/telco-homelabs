@@ -2,7 +2,7 @@ apiVersion: metal3.io/v1alpha1
 kind: BareMetalHost
 metadata:
   name: {{ .Values.name }}-{{ .Values.global.name }}
-  namespace: assisted-installer
+  namespace: {{ .Values.global.namespace }}
   labels:
     # InfraEnv to use
     infraenvs.agent-install.openshift.io: "infraenv-{{ .Values.global.name }}"

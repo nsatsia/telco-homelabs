@@ -3,7 +3,7 @@ apiVersion: hive.openshift.io/v1
 kind: ClusterDeployment
 metadata:
   name: cluster-{{ .Values.global.name }}
-  namespace: assisted-installer
+  namespace: {{ .Values.global.namespace }}
 spec:
   baseDomain: lab.diktio.net
   clusterName: {{ .Values.global.name }}
@@ -19,5 +19,6 @@ spec:
       agentSelector:
         matchLabels:
           telco-core: core-{{ .Values.global.name }}
+          #nfraenvs.agent-install.openshift.io: infraenv-{{ .Values.global.name }}
   pullSecretRef:
     name: {{ .Values.global.pull_secret }}
