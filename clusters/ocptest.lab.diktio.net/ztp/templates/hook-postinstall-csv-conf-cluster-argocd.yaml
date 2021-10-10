@@ -18,9 +18,9 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - image: registry.redhat.io/openshift-gitops-1/argocd-rhel8:v1.2.0
-                 #lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
-          #imagePullPolicy: Always
           imagePullPolicy: IfNotPresent
+          #lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
+          #imagePullPolicy: Always
           name: mcp-wait-job
           env:
             - name: SLEEP
