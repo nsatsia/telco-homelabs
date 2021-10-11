@@ -23,4 +23,4 @@ spec:
       source:
         repoURL: {{ .Values.base_git_url }}
         targetRevision: HEAD
-        path: '{{ "{{" }}path{{ "}}" }}'/ztp
+        path: '{{ "{{" }}path{{ "}}" }}/ztp'

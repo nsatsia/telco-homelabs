@@ -23,7 +23,7 @@ spec:
       source:
         repoURL: {{ .Values.base_git_url }}
         targetRevision: HEAD
-        path: '{{ "{{" }}path{{ "}}" }}'/ztp-gitops-app-sets
+        path: '{{ "{{" }}path{{ "}}" }}/ztp-gitops-app-sets'
       syncPolicy:
         automated:
           # Default prune is "false" 
