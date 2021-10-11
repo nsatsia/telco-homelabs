@@ -47,7 +47,7 @@ spec:
               argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               DEFINED_STATUS="Waiting!"
               echo -n "Waiting for cluster to be defined in ArgoCD."
-              while ! `argocd cluster list | egrep -q api.{{ .Values.name }}.{{ .Values.domain }}`; do
+              while ! `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.name }}.{{ .Values.domain }}`; do
                 echo -n "."
                 sleep $SLEEP
               done 
