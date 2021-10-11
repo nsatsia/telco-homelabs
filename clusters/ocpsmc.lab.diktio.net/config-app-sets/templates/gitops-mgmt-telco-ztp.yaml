@@ -13,7 +13,8 @@ spec:
         - path: clusters/*/ztp*
   template:
     metadata:
-      name: '01-ztp-{{ "{{" }}path.basename{{ "}}" }}'
+      name: '01-ztp-{{ "{{" }}path{{ "}}" }}'
+      #name: '01-ztp-{{ "{{" }}path.basename{{ "}}" }}'
       namespace: telco-gitops
     spec:
       destination:
