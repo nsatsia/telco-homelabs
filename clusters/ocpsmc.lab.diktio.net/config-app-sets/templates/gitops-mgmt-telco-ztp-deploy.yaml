@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: telco-gitops-ztp
+  name: telco-ztp-deploy
   namespace: telco-gitops
 spec:
   generators:
@@ -10,11 +10,10 @@ spec:
       repoURL: {{ .Values.base_git_url }}
       revision: HEAD 
       directories:
-        - path: clusters/*/ztp*
+        - path: clusters/*
   template:
     metadata:
-      name: '01-ztp-{{ "{{" }}path{{ "}}" }}'
-      #name: '01-ztp-{{ "{{" }}path.basename{{ "}}" }}'
+      name: '01-ztp-deploy-{{ "{{" }}path.basename{{ "}}" }}'
       namespace: telco-gitops
     spec:
       destination:
@@ -24,4 +23,4 @@ spec:
       source:
         repoURL: {{ .Values.base_git_url }}
         targetRevision: HEAD
-        path: '{{ "{{" }}path{{ "}}" }}'
+        path: '{{ "{{" }}path{{ "}}" }}'/ztp

@@ -13,7 +13,7 @@ spec:
         revision: HEAD
   template:
     metadata:
-      name: '00-mgmt-{{ "{{" }}path.basename{{ "}}" }}'
+      name: '01-{{ .Values.name }}-{{ "{{" }}path.basename{{ "}}" }}'
       namespace: telcot-gitops
     spec:
       destination:
