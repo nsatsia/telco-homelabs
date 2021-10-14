@@ -59,7 +59,7 @@ master3:
 worker1:
   name: "worker1"
   role: worker
-  bond0_IP: "192.19.129.63"
+  bond0_IP: "192.19.129.66"
   int1_name: "enp1s0"
   int1_mac: "52:54:00:46:8a:bf"
   int2_name: "enp2s0"
@@ -73,7 +73,7 @@ worker1:
 worker2:
   name: "worker2"
   role: worker
-  bond0_IP: "192.19.129.64"
+  bond0_IP: "192.19.129.67"
   int1_name: "enp1s0"
   int1_mac: "52:54:00:33:3e:ea"
   int2_name: "enp2s0"
@@ -87,7 +87,7 @@ worker2:
 worker3:
   name: "worker3"
   role: worker
-  bond0_IP: "192.19.129.65"
+  bond0_IP: "192.19.129.68"
   int1_name: "enp1s0"
   int1_mac: "52:54:00:4d:ae:55"
   int2_name: "enp2s0"
