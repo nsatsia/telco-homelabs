@@ -59,7 +59,7 @@ If a proxy is used then the following options will also be needed:
 ```
 An "*" or a comma-separated list of destination domain names, domains, IP addresses, or other network CIDRs to exclude from proxying.
 
-```
+
 ### Cusomise networking and create ISO
 Refer to "nmstate_ocptest.yml" below for network customisation example
 
