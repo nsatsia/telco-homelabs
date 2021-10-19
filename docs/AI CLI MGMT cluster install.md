@@ -68,6 +68,7 @@ aicli create iso ocptest \
   --paramfile ~/nmstate_ocptest.yml \
   -P image_type=full-iso
 ```
+
 ### Download ISO and boot machines
 ```bash
 aicli download iso ocptest
