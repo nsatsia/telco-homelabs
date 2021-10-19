@@ -62,6 +62,7 @@ An "*" or a comma-separated list of destination domain names, domains, IP addres
 ```
 ### Cusomise networking and create ISO
 Refer to "nmstate_ocptest.yml" below for network customisation example
+
 ```bash
 aicli create iso ocptest \
   --paramfile ~/nmstate_ocptest.yml \
