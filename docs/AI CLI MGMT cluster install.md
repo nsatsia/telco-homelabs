@@ -50,6 +50,16 @@ aicli update cluster ocptest \
   -P service_network_cidr=172.30.0.0/16 \
   -P network_type=OVNKubernetes 
 ```
+If a proxy is used then the following options will also be needed:
+
+```bash
+  -P http_proxy="http://<username>:<pswd>@<ip>:<port>"
+  -P https_proxy="http://<username>:<pswd>@<ip>:<port>"
+  -P no_proxy=""
+```
+An "*" or a comma-separated list of destination domain names, domains, IP addresses, or other network CIDRs to exclude from proxying.
+
+```
 ### Cusomise networking and create ISO
 Refer to "nmstate_ocptest.yml" below for network customisation example
 ```bash
