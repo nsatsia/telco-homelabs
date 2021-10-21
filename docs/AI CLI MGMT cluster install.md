@@ -86,7 +86,7 @@ aicli update cluster ocptest \
 ```
 
 #### Rename hosts 
-The nodes can automatically their name via DHCP options or reverse DNS lookup in the static IP case. If neither DHCP or DNS are available in the given environment then the nodes will automatically name themselves "localhost" which means they must be renamed before proceeding to deploy the cluster.
+The nodes can automatically be named via a DHCP options or reverse DNS lookup in the static IP case. If neither DHCP or DNS are available in the given environment then the nodes will automatically name themselves "localhost" which means they must be renamed before proceeding to deploy the cluster.
 
 To rename the hosts via the "aicli" tool you need to perform the following steps:
  - Obtain the UUID assigned to your nodes.
