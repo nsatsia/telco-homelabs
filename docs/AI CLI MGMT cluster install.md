@@ -79,6 +79,8 @@ aicli download iso ocptest
 ### Finalise the configuration
 
 #### Configure static VIPs to match your DNS entries
+Refer to the example below on how to prepare the DNS server.
+
 ```bash
 aicli update cluster ocptest \
   -P api_vip=192.19.129.21 \
@@ -283,4 +285,31 @@ static_network_config:
         - destination: 0.0.0.0/0
           next-hop-address: 192.19.129.254
           next-hop-interface: bond0
+```
+---
+# Example DNS setup using IDM/IPA
+```bash
+# On the IDM server
+
+kinit admin
+
+# Zone
+ipa dnszone-add ocptest.lab.diktio.net
+
+# API
+ipa host-add --ip-address 192.19.129.21 api.ocptest.lab.diktio.net
+ipa service-add HTTP/api.ocptest.lab.diktio.net
+ipa dnsrecord-add ocptest.lab.diktio.net api-int  --cname-hostname api
+
+# Nodes
+ipa host-add --ip-address 192.19.129.23 master1.ocptest.lab.diktio.net
+ipa host-add --ip-address 192.19.129.24 master2.ocptest.lab.diktio.net
+ipa host-add --ip-address 192.19.129.25 master3.ocptest.lab.diktio.net
+
+# Ingress Controller/Router
+ipa host-add --ip-address 192.19.129.22 ingress.ocptest.lab.diktio.net
+ipa dnsrecord-add ocptest.lab.diktio.net "*.apps"  --cname-hostname ingress
+ipa service-add HTTP/ingress.ocptest.lab.diktio.net
+ipa service-add-principal HTTP/ingress.ocptest.lab.diktio.net@LAB.DIKTIO.NET HTTP/*.apps.ocptest.lab.diktio.net@LAB.DIKTIO.NET
+
 ```
