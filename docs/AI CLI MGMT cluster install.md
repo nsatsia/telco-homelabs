@@ -50,6 +50,8 @@ aicli update cluster ocptest \
   -P service_network_cidr=172.30.0.0/16 \
   -P network_type=OVNKubernetes 
 ```
+#### Proxy (optional)
+
 If a proxy is used then the following options will also be needed:
 
 ```bash
@@ -73,12 +75,34 @@ aicli create iso ocptest \
 ```bash
 aicli download iso ocptest
 ```
-### Configure static VIPs to match your DNS entries
+
+### Finalise the configuration
+
+#### Configure static VIPs to match your DNS entries
 ```bash
 aicli update cluster ocptest \
   -P api_vip=192.19.129.21 \
   -P ingress_vip=192.19.129.22
 ```
+
+#### Rename hosts 
+The nodes can automatically their name via DHCP options or reverse DNS lookup in the static IP case. If neither DHCP or DNS are available in the given environment then the nodes will automatically name themselves "localhost" which means they must be renamed before proceeding to deploy the cluster.
+
+To rename the hosts via the "aicli" tool you need to perform the following steps:
+ - Obtain the UUID assigned to your nodes.
+ ```bash
+ aicli list host
+ ```
+ - Determine which node is which based on the discovered inventory. For example, the static IP address assigned to the node.
+ ```bash
+ aicli info host <host_uuid> --full | egrep "^inventory\:" | awk -F "^inventory:" '{print $2}' | jq .
+ ```
+ - Rename each node accordingly.
+ ```bash
+ aicli update host <host_uuid> -P name=<new_name>
+ ```
+
+
 ### Deploy the cluster
 Wait for AI to be in deploy ready state before trying to start the deployment else it will fail with error.
 ```bash
