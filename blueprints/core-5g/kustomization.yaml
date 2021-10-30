@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  telco-gitops/core-5g: telco-gitops
+
+# NOTE: This node definition
+
+bases:
+  # Configure chrony
+  # - ../../base/configs/chrony
+  # Identity Provider (htpasswd)
+  # - ../../base/configs/idp-htpasswd
+  # local storage operator
+  - ../../base/operators/local-storage-operator
+  # LSO auto-discovery label
+  - ../../base/configs/lso
+  # Enable SCTP
+  - ../../base/configs/sctp
+  # Telco Optimizations
+  - ../../base/configs/telco-optimized
+  # SRIOV
+  - ../../base/operators/openshift-sriov-network-operator
+  # PAO
+  - ../../base/operators/openshift-performance-addon-operator

@@ -1,0 +1,14 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: performance-addon-operator
+  namespace: openshift-operators
+  labels:
+    operators.coreos.com/performance-addon-operator.openshift-operators: ''
+spec:
+  channel: 'CHANGEME'
+  installPlanApproval: Automatic
+  name: performance-addon-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
