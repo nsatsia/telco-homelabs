@@ -1,4 +1,4 @@
-{{- range $.Values.nodes.masters }}
+{{- range .Values.nodes.masters }}
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
 metadata:
