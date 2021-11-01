@@ -1,12 +1,12 @@
-{{- range .Values.nodes.masters }}
+{{- range $.Values.nodes.masters }}
 apiVersion: metal3.io/v1alpha1
 kind: BareMetalHost
 metadata:
-  name: {{ .name }}-{{ .Values.global.name }}
-  namespace: {{ .Values.global.namespace }}
+  name: {{ .name }}-{{ $.Values.global.name }}
+  namespace: {{ $.Values.global.namespace }}
   labels:
     # InfraEnv to use
-    infraenvs.agent-install.openshift.io: "infraenv-{{ .Values.global.name }}"
+    infraenvs.agent-install.openshift.io: "infraenv-{{ $.Values.global.name }}"
   annotations:
     bmac.agent-install.openshift.io/role: {{ .role | default "worker" }}
     inspect.metal3.io: disabled
@@ -18,6 +18,6 @@ spec:
   hardwareProfile: libvirt
   bmc:
     address: redfish-virtualmedia+{{ .bmc_address }}
-    credentialsName: bmc-{{ .name }}-{{ .Values.global.name }}
+    credentialsName: bmc-{{ .name }}-{{ $.Values.global.name }}
     disableCertificateVerification: True
 {{- end }}

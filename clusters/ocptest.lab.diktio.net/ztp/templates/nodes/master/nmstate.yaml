@@ -1,11 +1,11 @@
-{{- range .Values.nodes.masters }}
+{{- range $.Values.nodes.masters }}
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
 metadata:
-  name: nmstate-{{ .name }}-{{ .Values.global.name }}
-  namespace: {{ .Values.global.namespace }}
+  name: nmstate-{{ .name }}-{{ $.Values.global.name }}
+  namespace: {{ $.Values.global.namespace }}
   labels:
-    cluster-name: {{ .Values.global.name }}-nmstate
+    cluster-name: {{ $.Values.global.name }}-nmstate
 spec:
   config:
     interfaces:
@@ -59,11 +59,11 @@ spec:
     dns-resolver:
       config:
         server:
-          - '{{ .Values.global.dns }}'
+          - '{{ $.Values.global.dns }}'
     routes:
       config:
         - destination: 0.0.0.0/0
-          next-hop-address: {{ .Values.global.default_router }}
+          next-hop-address: {{ $.Values.global.default_router }}
           next-hop-interface: bond0
   interfaces:
     - name: {{ .int1_name | quote }}
