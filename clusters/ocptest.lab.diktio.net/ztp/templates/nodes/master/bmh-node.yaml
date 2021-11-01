@@ -20,4 +20,5 @@ spec:
     address: redfish-virtualmedia+{{ .bmc_address }}
     credentialsName: bmc-{{ .name }}-{{ $.Values.global.name }}
     disableCertificateVerification: True
+---
 {{- end }}

@@ -72,4 +72,5 @@ spec:
       macAddress: {{ .int2_mac | quote }}
     - name: {{ .int3_name | quote }}
       macAddress: {{ .int3_mac | quote }}
+---
 {{- end }}
