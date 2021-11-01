@@ -1,0 +1,114 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-master1-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-master2-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-master3-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-worker1-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmc-worker2-ocptest-lab
+  namespace: assisted-installer
+data:
+  username: cm9vdA==
+  password: UmVkaGF0MDEK
+type: Opaque
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: master1-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    # InfraEnv to use
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    bmac.agent-install.openshift.io/role: master
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
+spec:
+  online: true
+  bootMACAddress: 52:54:00:e9:0e:fd
+  automatedCleaningMode: disabled
+  hardwareProfile: libvirt
+  bmc:
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/d76ae290-8f52-4c78-8b82-de17a00aae55
+    credentialsName: bmc-master1-ocptest-lab
+    disableCertificateVerification: True
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: master2-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/role: master
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
+spec:
+  online: true
+  bootMACAddress: 52:54:00:96:aa:61
+  automatedCleaningMode: disabled
+  hardwareProfile: libvirt
+  bmc:
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/e1b179ce-0392-4c0b-b8a4-d0fd362b6687
+    credentialsName: bmc-master2-ocptest-lab
+    disableCertificateVerification: True
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: master3-ocptest-lab
+  namespace: assisted-installer
+  labels:
+    infraenvs.agent-install.openshift.io: "infraenv-core-ocptest-lab"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/role: master
+    bmac.agent-install.openshift.io/installer-args: '["-n"]' 
+spec:
+  online: true
+  bootMACAddress: 52:54:00:65:65:56
+  automatedCleaningMode: disabled
+  hardwareProfile: libvirt
+  bmc:
+    address: redfish-virtualmedia+http://192.19.130.14:8080/redfish/v1/Systems/feead04d-683e-4b0c-ab7f-e300b0c93177
+    credentialsName: bmc-master3-ocptest-lab
+    disableCertificateVerification: True

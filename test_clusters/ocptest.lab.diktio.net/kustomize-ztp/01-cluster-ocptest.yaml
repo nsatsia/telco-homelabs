@@ -1,0 +1,23 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: cluster-ocptest-lab
+  namespace: assisted-installer
+spec:
+  baseDomain: lab.diktio.net
+  clusterName: ocptest
+  controlPlaneConfig:
+    servingCertificates: {}
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: aci-ocptest-lab
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          telco-core: core-ocptest-lab
+  pullSecretRef:
+    name: pull-secret

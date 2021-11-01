@@ -1,0 +1,21 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: sriov-network-operator-subscription
+spec:
+  channel: "4.8"
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ptp-operator-subscription
+spec:
+  channel: "4.8"
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: performance-addon-operator
+spec:
+  channel: '4.8'
