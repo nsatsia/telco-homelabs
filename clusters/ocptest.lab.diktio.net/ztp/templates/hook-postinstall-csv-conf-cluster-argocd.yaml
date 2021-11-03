@@ -29,7 +29,7 @@ spec:
             - /bin/bash
             - -c
             - |
-              echo "OCS PreSync Hook"
+              echo "Cluster Post Install Hook"
               URL_READY="Pausing $SLEEP seconds..."
               while [ "$URL_READY" != "https" ]; do
                 echo "Waiting for the AI status URL to be ready. ($URL_READY)"

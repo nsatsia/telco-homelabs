@@ -13,7 +13,7 @@ spec:
   clusterDeploymentRef:
     name: cluster-ocptest-lab
   imageSetRef:
-    name: openshift-v4.8.11-mirror
+    name: {{ .Values.global.imagesetref_name }}
 #  manifestsConfigMapRef:
 #    name: cm-overrides-ran-skylark-cars-lab
   networking:

@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
 - 01-hiveconfig.yaml
 - 02-clusterimageset-4.8.11.yaml
+- 02-clusterimageset-4.8.15.yaml
