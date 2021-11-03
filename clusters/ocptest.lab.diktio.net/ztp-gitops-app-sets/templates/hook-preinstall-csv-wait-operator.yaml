@@ -55,3 +55,4 @@ spec:
               rm -f /tmp/kubeconfig /tmp/config 
               echo "All done! Hooray!"
               sleep $SLEEP
+ 
