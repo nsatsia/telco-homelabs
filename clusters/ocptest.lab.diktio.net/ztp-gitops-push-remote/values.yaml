@@ -1,0 +1,6 @@
+---
+global:
+  base_git_url: https://github.com/nsatsia/telco-homelabs.git
+  namespace: assisted-installer
+  name: ocptest
+  domain: lab.diktio.net

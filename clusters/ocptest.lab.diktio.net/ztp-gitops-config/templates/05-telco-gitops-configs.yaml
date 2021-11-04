@@ -1,28 +1,37 @@
+{{ .Values.global.name }}.{{ .Values.global.domain }}
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: 00-mgmt-base
-  namespace: telco-gitops
+ name: {{ .Values.global.name }}-telco-gitops-configs
+ namespace: telco-gitops
 spec:
-  # The argocd project the application belongs to
-  project: default
-  destination:
-    namespace: 'telco-gitops'
-    server: 'https://kubernetes.default.svc'
-  source:
-    repoURL: 'https://github.com/nsatsia/telco-gitops-mgmt.git'
-    targetRevision: HEAD
-    path: telco-gitops-mgmt/mgmt.telco.shift.zone
-    directory:
-      recurse: false
+  generators:
+    - git:
+        directories:
+          - path: clusters/{{ .Values.global.name }}.{{ .Values.global.domain }}/config-*
+        repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
+        revision: HEAD
+  template:
+    metadata:
+      name: '01-{{ .Values.global.name }}-{{path.basename}}'
+      namespace: telcot-gitops
+    spec:
+      destination:
+        namespace: telco-gitops
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
+        targetRevision: HEAD
+        path: '{{path}}'
       syncPolicy:
         automated:
           # Default prune is "false" 
-          #prune: true
+          prune: true
           selfHeal: true 
           # Allows deleting all application resources during automatic syncing ( false by default ).
-          #allowEmpty: true
+          allowEmpty: true
         syncOptions:
           # (equivalent to 'kubectl apply --validate=false')
           - Validate=false
@@ -41,18 +50,3 @@ spec:
             factor: 2
             # the maximum amount of time allowed for the backoff strategy
             maxDuration: 3m
-      # Ignore differences at the specified json pointers
-      # ignoreDifferences:
-      # - group: apps
-      #   kind: Deployment
-      #   jsonPointers:
-      #   - /spec/replicas
-      # ignoreDifferences:
-      #    - group: apiextensions.k8s.io
-      #      name: pcap.fennecproject.io
-      #      kind: CustomResourceDefinition
-      #      jsonPointers:
-      #        - /spec/podLabel
-      #        - /spec/interfaceName
-      #        - /spec/packetCount
-      

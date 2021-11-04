@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: telco-ztp-gitops
+  name: telco-ztp-gitops-push-config
   namespace: telco-gitops
 spec:
   generators:
@@ -13,7 +13,7 @@ spec:
         - path: clusters/*
   template:
     metadata:
-      name: '01-ztp-gitops-{{ "{{" }}path.basename{{ "}}" }}'
+      name: '01-ztp-gitops-{{ "{{" }}path.basename{{ "}}" }}-push-config'
       namespace: telco-gitops
     spec:
       destination:
@@ -23,4 +23,4 @@ spec:
       source:
         repoURL: {{ .Values.base_git_url }}
         targetRevision: HEAD
-        path: '{{ "{{" }}path{{ "}}" }}/ztp-gitops-app-sets'
+        path: '{{ "{{" }}path{{ "}}" }}/ztp-gitops-push-config'
