@@ -12,3 +12,19 @@ spec:
     repoURL: {{ .Values.global.base_git_url }}
     targetRevision: HEAD
     path: 'clusters/{{ .Values.global.name }}.{{ .Values.global.domain }}/ztp-gitops-install'
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 1m
+        factor: 2
+        maxDuration: 3m
+      limit: -1
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
