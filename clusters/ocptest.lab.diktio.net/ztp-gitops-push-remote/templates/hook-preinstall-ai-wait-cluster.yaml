@@ -38,6 +38,7 @@ spec:
               INSTALL_STATUS="Waiting for cluster to complete install"
               while [ "$INSTALL_STATUS" != "Successfully finished installing cluster" ]; do
                 echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
+                echo $URL
                 sleep $SLEEP
                 # INSTALL_STATUS=$( curl -s -k $URL | jq .[-1:][0].message )
                 INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
