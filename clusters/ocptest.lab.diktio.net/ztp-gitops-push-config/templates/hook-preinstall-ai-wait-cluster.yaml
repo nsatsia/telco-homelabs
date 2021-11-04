@@ -41,8 +41,7 @@ spec:
                 echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
                 sleep $SLEEP
                 INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
-                echo $INSTALL_STATUS "Successfully finished installing cluster"
-                if [ "$INSTALL_STATUS" = "Successfully finished installing cluster" ]
+                if [ "$INSTALL_STATUS" = "Successfully completed installing cluster" ]
                 then break
                 fi
               done
