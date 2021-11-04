@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: '01-ztp-gitops-install-{{ .Values.global.name }}.{{ .Values.global.domain }}'
+  name: '01-ztp-gitops-config-{{ .Values.global.name }}.{{ .Values.global.domain }}'
   namespace: telco-gitops
 spec:
   destination:
