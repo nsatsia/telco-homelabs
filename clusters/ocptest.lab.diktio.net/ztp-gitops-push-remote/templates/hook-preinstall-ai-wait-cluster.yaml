@@ -36,11 +36,14 @@ spec:
                 URL_READY=$(echo $URL | awk -F ":" '{print $1}')
               done
               INSTALL_STATUS="Waiting for cluster to complete install"
-              while [ "Successfully finished installing cluster" != "$INSTALL_STATUS" ]; do
+              while :
+              do
                 echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
                 sleep $SLEEP
-                # INSTALL_STATUS=$( curl -s -k $URL | jq .[-1:][0].message )
                 INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
+                if [ "${INSTALL_STATUS}" = "Successfully finished installing cluster" ]
+                then break
+                fi
               done
               echo "All done! Hooray!"
 
