@@ -6,7 +6,7 @@ metadata:
     helm.sh/hook: pre-install
     helm.sh/hook-delete-policy: hook-succeeded
     #helm.sh/hook-weight: "-5"
-  name: preinstall-{{ .Values.global.name }}-ai-wait-cluster-job
+  name: preinstall-{{ .Values.global.name }}-ai-wait-cluster-config-job
   namespace: telco-gitops
 spec:
   template:
