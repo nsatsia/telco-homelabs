@@ -9,6 +9,6 @@ spec:
     server: 'https://api.{{ .Values.global.name }}.{{ .Values.global.domain }}:6443'
   project: default
   source:
-    repoURL: {{ .Values.base_git_url }}
+    repoURL: {{ .Values.global.base_git_url }}
     targetRevision: HEAD
     path: 'clusters/{{ .Values.global.name }}.{{ .Values.global.domain }}/ztp-gitops-install'
