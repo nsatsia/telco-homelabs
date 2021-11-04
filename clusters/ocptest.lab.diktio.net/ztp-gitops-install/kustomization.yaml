@@ -15,8 +15,6 @@ commonAnnotations:
   argocd.argoproj.io/sync-options: Prune=false
 
 bases:
-  # OpenShift GitOps
-  - ../../../base/operators/openshift-gitops
 
 resources:
-
+  - 01-install.yaml
