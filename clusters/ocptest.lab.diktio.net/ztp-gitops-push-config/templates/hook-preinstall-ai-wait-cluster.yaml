@@ -41,12 +41,12 @@ spec:
                 echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
                 sleep $SLEEP
                 INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
-                echo "$INSTALL_STATUS" "Successfully finished installing cluster"
+                echo $INSTALL_STATUS "Successfully finished installing cluster"
                 if [ "$INSTALL_STATUS" = "Successfully finished installing cluster" ]
                 then break
                 fi
               done
-             oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
+              oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
               echo "Waiting for ArgoCD to install"
               CSV_STATUS="Pausing $SLEEP seconds..."
               while [ "$CSV_STATUS" != "Succeeded" ]; do
