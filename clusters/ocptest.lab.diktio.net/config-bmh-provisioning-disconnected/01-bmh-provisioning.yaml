@@ -2,10 +2,8 @@
 apiVersion: metal3.io/v1alpha1
 kind: Provisioning
 metadata:
-  finalizers:
-  - provisioning.metal3.io
   name: provisioning-configuration
 spec:
   provisioningNetwork: Disabled
   provisioningOSDownloadURL: http://192.19.130.11:8989/rhcos-48.84.202106301921-0-openstack.x86_64.qcow2.gz?sha256=5a75df7b4d4dc1861093e520187a133eda3439019f280dc6e2f57edf70eb089d
-  watchAllNamespaces: false
+  watchAllNamespaces: true
