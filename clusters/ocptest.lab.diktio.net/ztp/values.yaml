@@ -2,6 +2,7 @@
 global:
   namespace: assisted-installer
   name: ocptest
+  domain: lab.diktio.net
   pull_secret: pull-secret
   api_vip: 192.19.129.21
   ingress_vip: 192.19.129.22
