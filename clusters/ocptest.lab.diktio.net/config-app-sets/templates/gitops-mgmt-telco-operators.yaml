@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
  name: {{ .Values.global.name }}-{{ .Values.global.servernamespace }}-operators
- namespace: telco-gitops
+ namespace: {{ .Values.global.servernamespace }}
 spec:
   generators:
     - git:
@@ -17,7 +17,7 @@ spec:
       namespace: telcot-gitops
     spec:
       destination:
-        namespace: telco-gitops
+        namespace: {{ .Values.global.servernamespace }}
         server: 'https://kubernetes.default.svc'
       project: default
       source:
