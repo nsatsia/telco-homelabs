@@ -53,12 +53,10 @@ spec:
               echo "#"              
               if `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.global.name }}.{{ .Values.global.domain }}`; then
                 echo FOUND!  Deleting
-                echo argocd cluster rm --config /tmp/config  https://api.{{ .Values.global.name }}.{{ .Values.global.domain }}:6443
                 argocd cluster rm --config /tmp/config  https://api.{{ .Values.global.name }}.{{ .Values.global.domain }}:6443
               fi
               echo "#"  
               sleep $SLEEP      
-              sleep 60
               argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
               argocd logout --config /tmp/config admin
               rm -f /tmp/kubeconfig /tmp/config 
