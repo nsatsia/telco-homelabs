@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
- name: {{ .Values.global.name }}-{{ .Values.global.servernamespace }}-app-set
+ name: {{ .Values.global.name }}-{{ .Values.global.servernamespace }}-configs
  namespace: telco-gitops
 spec:
   generators:
