@@ -51,12 +51,12 @@ spec:
               ARGOPW=$(oc get secret -n telco-gitops telco-gitops-cluster -o go-template='{{ "{{" }}index .data "admin.password"{{ "}}" }}' | base64 -d)
               argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               echo "#"              
-              if `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.name }}.{{ .Values.domain }}`; then
+              if `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.global.name }}.{{ .Values.global.domain }}`; then
                 echo FOUND!  Deleting
-                argocd cluster rm --config /tmp/config  https://api.{{ .Values.name }}.{{ .Values.domain }}:6443
+                argocd cluster rm --config /tmp/config  https://api.{{ .Values.global.name }}.{{ .Values.global.domain }}:6443
               fi
               echo "#"  
-              sleep 60            
+              sleep $SLEEP      
               argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
               argocd logout --config /tmp/config admin
               rm -f /tmp/kubeconfig /tmp/config 
