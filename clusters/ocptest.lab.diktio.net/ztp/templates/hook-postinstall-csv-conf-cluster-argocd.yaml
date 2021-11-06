@@ -48,14 +48,18 @@ spec:
                 fi
               done
               oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
+              
               ARGOPW=$(oc get secret -n telco-gitops telco-gitops-cluster -o go-template='{{ "{{" }}index .data "admin.password"{{ "}}" }}' | base64 -d)
+              
               argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
+              
               if `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.name }}.{{ .Values.domain }}`; then
                 argocd cluster rm https://api.{{ .Values.name }}.{{ .Values.domain }}:6443
               fi
+              sleep 60              
               argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
+              sleep 180
               argocd logout --config /tmp/config admin
-
               rm -f /tmp/kubeconfig /tmp/config 
               echo "All done! Hooray!"
 
