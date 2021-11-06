@@ -47,24 +47,16 @@ spec:
                 then break
                 fi
               done
-              echo oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} 
               oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
-              
               ARGOPW=$(oc get secret -n telco-gitops telco-gitops-cluster -o go-template='{{ "{{" }}index .data "admin.password"{{ "}}" }}' | base64 -d)
-              echo "#"
-              echo argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
               echo "#"              
               if `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.name }}.{{ .Values.domain }}`; then
                 echo FOUND!  Deleting
-                argocd cluster rm https://api.{{ .Values.name }}.{{ .Values.domain }}:6443
+                argocd cluster rm --config /tmp/config  https://api.{{ .Values.name }}.{{ .Values.domain }}:6443
               fi
-              echo "# Sleep 60 now"
-              sleep 60              
-              echo argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
+              echo "#"              
               argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
-              echo "# Sleep 180 now"
-              sleep 180
               argocd logout --config /tmp/config admin
               rm -f /tmp/kubeconfig /tmp/config 
               echo "All done! Hooray!"
