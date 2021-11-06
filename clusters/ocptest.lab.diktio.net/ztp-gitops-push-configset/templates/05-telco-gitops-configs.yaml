@@ -14,7 +14,7 @@ spec:
         revision: HEAD
   template:
     metadata:
-      name: '01-{{ .Values.global.name }}-{{path.basename}}'
+      name: '01-{{ .Values.global.name }}-{{ "{{" }}path.basename{{ "}}" }}'
       namespace: telcot-gitops
     spec:
       destination:
@@ -24,7 +24,7 @@ spec:
       source:
         repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
         targetRevision: HEAD
-        path: '{{path}}'
+        path: '{{ "{{" }}path{{ "}}" }}'
       syncPolicy:
         automated:
           # Default prune is "false" 
