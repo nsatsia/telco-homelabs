@@ -55,7 +55,8 @@ spec:
                 echo FOUND!  Deleting
                 argocd cluster rm --config /tmp/config  https://api.{{ .Values.name }}.{{ .Values.domain }}:6443
               fi
-              echo "#"              
+              echo "#"  
+              sleep 60            
               argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
               argocd logout --config /tmp/config admin
               rm -f /tmp/kubeconfig /tmp/config 
