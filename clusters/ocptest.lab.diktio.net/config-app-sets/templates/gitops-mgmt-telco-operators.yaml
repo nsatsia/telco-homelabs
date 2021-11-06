@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
- name: mgmt-telco-operators
+ name: {{ .Values.global.name }}-{{ .Values.global.servernamespace }}-operators
  namespace: telco-gitops
 spec:
   generators:
@@ -13,7 +13,7 @@ spec:
         revision: HEAD
   template:
     metadata:
-      name: '00-mgmt-{{ "{{" }}path.basename{{ "}}" }}'
+      name: '00-{{ .Values.global.name }}-{{ "{{" }}path.basename{{ "}}" }}'
       namespace: telcot-gitops
     spec:
       destination:
