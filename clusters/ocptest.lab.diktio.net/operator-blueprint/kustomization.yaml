@@ -11,6 +11,6 @@ metadata:
 
 bases:
   # Operators for MGMT Clusters
-  - ../../../blueprints/mgmt
+  - ../../../blueprints/core-5g
 
 resources:
