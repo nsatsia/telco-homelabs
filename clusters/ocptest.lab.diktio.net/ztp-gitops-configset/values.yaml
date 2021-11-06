@@ -1,0 +1,5 @@
+---
+global:
+  namespace: assisted-installer
+  name: ocptest
+  domain: lab.diktio.net

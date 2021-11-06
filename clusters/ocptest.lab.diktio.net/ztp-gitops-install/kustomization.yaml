@@ -18,4 +18,3 @@ bases:
 
 resources:
   - 01-install.yaml
-  #- 00-telco-gitops-ns.yaml
