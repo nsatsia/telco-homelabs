@@ -4,3 +4,6 @@ global:
   name: ocptest
   base_git_url: https://github.com/nsatsia/telco-homelabs.git
   hook_image: registry.redhat.io/openshift4/ose-cli:latest
+  servernamespace: telco-gitops
+  server: telco-gitops
+  domain: lab.diktio.net
