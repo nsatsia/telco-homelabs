@@ -14,19 +14,19 @@ bases:
   # Common Telco Optimizations
   - ../../base/configs/telco-optimized
   # Local Storage Operator
-  - ../../base/operators/local-storage-operator
+  - ../../base/operators-mirror/local-storage-operator
   # OpenShift Container storage
-  - ../../base/operators/openshift-container-storage
+  - ../../base/operators-mirror/openshift-container-storage
   # OpenShift Logging
-  # - ../../base/operators/openshift-logging
+  # - ../../base/operators-mirror/openshift-logging
   # OpenShiftVirt
-  # - ../../base/operators/openshift-virtualization?ref=main
+  # - ../../base/operators-mirror/openshift-virtualization?ref=main
   # Enable SCTP
   - ../../base/configs/sctp
   # SRIOV
-  - ../../base/operators/openshift-sriov-network-operator
+  - ../../base/operators-mirror/openshift-sriov-network-operator
   # PAO
-  - ../../base/operators/openshift-performance-addon-operator
+  - ../../base/operators-mirror/openshift-performance-addon-operator
   # Configure chrony
   # - ../../base/configs/chrony
   # Identity Provider (htpasswd)
