@@ -24,7 +24,7 @@ bases:
   # Enable SCTP
   - ../../base/configs/sctp
   # SRIOV
-  - ../../base/operators-mirror/openshift-sriov-network-operator
+  #- ../../base/operators-mirror/openshift-sriov-network-operator
   # PAO
   - ../../base/operators-mirror/openshift-performance-addon-operator
   # Configure chrony
