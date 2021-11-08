@@ -1,0 +1,3 @@
+[submodule "clusters/ocp5gc.lab.diktio.net"]
+	path = clusters/ocp5gc.lab.diktio.net
+	url = https://github.com/nsatsia/ocp5gc.lab.diktio.net
