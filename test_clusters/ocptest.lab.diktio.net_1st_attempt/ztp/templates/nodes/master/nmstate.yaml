@@ -1,0 +1,76 @@
+{{- range .Values.nodes.masters }}
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-{{ .name }}-{{ $.Values.global.name }}
+  namespace: {{ $.Values.global.namespace }}
+  labels:
+    cluster-name: {{ $.Values.global.name }}-nmstate
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        mtu: 8996
+        ipv6:
+          enabled: false
+        ipv4:
+          enabled: true
+          address:
+            - ip: {{ .bond0_IP }}
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '150'
+            primary: {{ .int1_name | quote }}
+          slaves:
+          - {{ .int1_name }}
+          # - {{ .int2_name }}
+      - name: {{ .int1_name }}
+        type: ethernet
+        state: up
+        mtu: 8996
+        ipv6:
+          enabled: false
+        ipv4:
+          enabled: false
+          #dhcp: false
+      - name: {{ .int2_name }}
+        type: ethernet
+        state: ip
+        mtu: 8996
+        ipv6:
+          enabled: false
+        ipv4:
+          enabled: false
+          #dhcp: false
+      - name: {{ .int3_name }}
+        type: ethernet
+        state: up
+        mtu: 8996
+        ipv6:
+          enabled: false
+        ipv4:
+          enabled: false
+          #dhcp: false
+    dns-resolver:
+      config:
+        server:
+          - '{{ $.Values.global.dns }}'
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: {{ $.Values.global.default_router }}
+          next-hop-interface: bond0
+  interfaces:
+    - name: {{ .int1_name | quote }}
+      macAddress: {{ .int1_mac | quote }}
+    - name: {{ .int2_name | quote }}
+      macAddress: {{ .int2_mac | quote }}
+    - name: {{ .int3_name | quote }}
+      macAddress: {{ .int3_mac | quote }}
+---
+{{- end }}

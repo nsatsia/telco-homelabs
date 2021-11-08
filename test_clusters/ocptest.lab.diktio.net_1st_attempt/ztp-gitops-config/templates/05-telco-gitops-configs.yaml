@@ -1,0 +1,51 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+ name: {{ .Values.global.name }}-{{ .Values.global.servernamespace }}-configs
+ namespace: telco-gitops
+spec:
+  generators:
+    - git:
+        directories:
+          - path: clusters/{{ .Values.global.name }}.{{ .Values.global.domain }}/config-*
+        repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
+        revision: HEAD
+  template:
+    metadata:
+      name: '01-{{ .Values.global.name }}-{{ "{{" }}path.basename{{ "}}" }}'
+      namespace: telcot-gitops
+    spec:
+      destination:
+        namespace: telco-gitops
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        repoURL: 'https://github.com/nsatsia/telco-homelabs.git'
+        targetRevision: HEAD
+        path: '{{ "{{" }}path{{ "}}" }}'
+      syncPolicy:
+        automated:
+          # Default prune is "false" 
+          prune: true
+          selfHeal: true 
+          # Allows deleting all application resources during automatic syncing ( false by default ).
+          allowEmpty: true
+        syncOptions:
+          # (equivalent to 'kubectl apply --validate=false')
+          - Validate=false
+          - CreateNamespace=true
+          # Supported policies are background, foreground and orphan.
+          - PrunePropagationPolicy=foreground
+          # Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
+          - PruneLast=true
+        retry:
+          # unlimited if less than 0
+          limit: -1
+          backoff:
+            # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+            duration: 1m
+            # a factor to multiply the base duration after each failed retry
+            factor: 2
+            # the maximum amount of time allowed for the backoff strategy
+            maxDuration: 3m

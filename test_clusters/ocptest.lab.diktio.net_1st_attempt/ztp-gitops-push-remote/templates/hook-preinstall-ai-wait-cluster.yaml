@@ -1,0 +1,50 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: preinstall-{{ .Values.global.name }}-ai-wait-cluster-job
+  namespace: telco-gitops
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: registry.redhat.io/openshift4/ose-cli:latest
+          imagePullPolicy: IfNotPresent
+          name: {{ .Values.global.name }}-ai-wait-cluster-config-job
+          env:
+            - name: SLEEP
+              value: "15"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Cluster Post Install Hook"
+              URL_READY="Pausing $SLEEP seconds..."
+              while [ "$URL_READY" != "https" ]; do
+                echo "Waiting for the AI status URL to be ready. ($URL_READY)"
+                sleep $SLEEP
+                URL=$(oc -n {{ .Values.global.namespace }} get agentclusterinstalls.extensions.hive.openshift.io aci-{{ .Values.global.name }} -o=jsonpath="{.status.debugInfo.eventsURL}")
+                URL_READY=$(echo $URL | awk -F ":" '{print $1}')
+              done
+              INSTALL_STATUS="Waiting for cluster to complete install"
+              while :
+              do
+                echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
+                sleep $SLEEP
+                INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
+                if [ "$INSTALL_STATUS" = "Successfully completed installing cluster" ]
+                then break
+                fi
+              done
+              echo "All done! Hooray!"
+
+

@@ -1,0 +1,7 @@
+---
+global:
+  base_git_url: https://github.com/nsatsia/telco-homelabs.git
+  servernamespace: telco-gitops
+  server: telco-gitops
+  name: ocptest
+  domain: lab.diktio.net

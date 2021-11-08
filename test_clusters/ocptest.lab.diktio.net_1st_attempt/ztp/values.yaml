@@ -1,0 +1,57 @@
+---
+global:
+  namespace: assisted-installer
+  name: ocptest
+  domain: lab.diktio.net
+  pull_secret: pull-secret
+  api_vip: 192.19.129.21
+  ingress_vip: 192.19.129.22
+  default_router: 192.19.129.254
+  dns: 192.19.128.2
+  clusternetwork: 10.128.0.0/14
+  servicenetwork: 172.30.0.0/16
+  imagesetref_name: "openshift-v4.8.17-mirror"
+  ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'
+# CLUSTER DOMAIN
+# SNO?
+
+nodes:
+  masters:
+  - name: "master1"
+    role: master
+    bond0_IP: "192.19.129.23"
+    int1_name: "enp1s0"
+    int1_mac: "52:54:00:e9:0e:fd"
+    int2_name: "enp2s0"
+    int2_mac: "52:54:01:e9:0e:fd"
+    int3_name: "enp3s0"
+    int3_mac: "52:54:02:e9:0e:fd"
+    bmc_username: ADMIN
+    bmc_password: Redhat01
+    bmc_address: http://192.19.130.12:8080/redfish/v1/Systems/b5df1a28-d830-43f1-81ac-6e085802acd3
+
+  - name: "master2"
+    role: master
+    bond0_IP: "192.19.129.24"
+    int1_name: "enp1s0"
+    int1_mac: "52:54:00:96:aa:61"
+    int2_name: "enp2s0"
+    int2_mac: "52:54:01:96:aa:61"
+    int3_name: "enp3s0"
+    int3_mac: "52:54:02:96:aa:61"
+    bmc_username: ADMIN
+    bmc_password: Redhat01
+    bmc_address: http://192.19.130.13:8080/redfish/v1/Systems/ffa83a3f-3ebb-48d3-b72f-377c6b324381
+
+  - name: "master3"
+    role: master
+    bond0_IP: "192.19.129.25"
+    int1_name: "enp1s0"
+    int1_mac: "52:54:00:65:65:56"
+    int2_name: "enp2s0"
+    int2_mac: "52:54:01:65:65:56"
+    int3_name: "enp3s0"
+    int3_mac: "52:54:02:65:65:56"
+    bmc_username: ADMIN
+    bmc_password: Redhat01
+    bmc_address: http://192.19.130.14:8080/redfish/v1/Systems/e3cd938d-32c7-4fb1-831a-43ff67f102d0

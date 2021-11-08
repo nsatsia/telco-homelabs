@@ -1,0 +1,24 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: cluster-{{ .Values.global.name }}
+  namespace: {{ .Values.global.namespace }}
+spec:
+  baseDomain: lab.diktio.net
+  clusterName: {{ .Values.global.name }}
+  controlPlaneConfig:
+    servingCertificates: {}
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: aci-{{ .Values.global.name }}
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          telco-core: core-{{ .Values.global.name }}
+          #nfraenvs.agent-install.openshift.io: infraenv-{{ .Values.global.name }}
+  pullSecretRef:
+    name: {{ .Values.global.pull_secret }}

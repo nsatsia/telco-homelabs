@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: '01-ztp-gitops-config-{{ .Values.global.name }}.{{ .Values.global.domain }}'
+  namespace: telco-gitops
+spec:
+  destination:
+    namespace: openshift-operators
+    server: 'https://api.{{ .Values.global.name }}.{{ .Values.global.domain }}:6443'
+  project: default
+  source:
+    repoURL: {{ .Values.global.base_git_url }}
+    targetRevision: HEAD
+    path: 'clusters/{{ .Values.global.name }}.{{ .Values.global.domain }}/ztp-gitops-config'
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 1m
+        factor: 2
+        maxDuration: 3m
+      limit: -1
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true

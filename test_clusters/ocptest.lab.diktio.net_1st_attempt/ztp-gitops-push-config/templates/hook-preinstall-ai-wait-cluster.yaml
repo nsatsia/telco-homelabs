@@ -1,0 +1,58 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: preinstall-{{ .Values.global.name }}-wait-argocd-job
+  namespace: telco-gitops
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: registry.redhat.io/openshift4/ose-cli:latest
+          imagePullPolicy: IfNotPresent
+          name: {{ .Values.global.name }}-wait-argocd-job
+          env:
+            - name: SLEEP
+              value: "15"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Cluster Post Install Hook"
+              URL_READY="Pausing $SLEEP seconds..."
+              while [ "$URL_READY" != "https" ]; do
+                echo "Waiting for the AI status URL to be ready. ($URL_READY)"
+                sleep $SLEEP
+                URL=$(oc -n {{ .Values.global.namespace }} get agentclusterinstalls.extensions.hive.openshift.io aci-{{ .Values.global.name }} -o=jsonpath="{.status.debugInfo.eventsURL}")
+                URL_READY=$(echo $URL | awk -F ":" '{print $1}')
+              done
+              INSTALL_STATUS="Waiting for cluster to complete install"
+              while :
+              do
+                echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
+                sleep $SLEEP
+                INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
+                if [ "$INSTALL_STATUS" = "Successfully completed installing cluster" ]
+                then break
+                fi
+              done
+              oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
+              echo "Waiting for ArgoCD to install"
+              CSV_STATUS="Pausing $SLEEP seconds..."
+              while [ "$CSV_STATUS" != "Succeeded" ]; do
+                echo "Waiting for the GitOps Operator to be ready. ($CSV_STATUS)"
+                sleep $SLEEP
+                CSV_STATUS=$( oc get csv --kubeconfig /tmp/kubeconfig -n openshift-operators -l operators.coreos.com/openshift-gitops-operator.openshift-operators='' -o jsonpath={..status.phase} )
+              done
+              echo "All done! Hooray!"
+
+

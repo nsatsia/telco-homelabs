@@ -1,0 +1,65 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: postsync-csv-wait-patch-metal3-job
+  namespace: telco-gitops
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: registry.redhat.io/openshift-gitops-1/argocd-rhel8:v1.2.0
+          imagePullPolicy: IfNotPresent
+          #lab-registry.ocpsmc.lab.diktio.net/nsatsia/telco-toolbox:latest
+          #imagePullPolicy: Always
+          name: mcp-wait-job
+          env:
+            - name: SLEEP
+              value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Cluster Post Install Hook"
+              URL_READY="Pausing $SLEEP seconds..."
+              while [ "$URL_READY" != "https" ]; do
+                echo "Waiting for the AI status URL to be ready. ($URL_READY)"
+                sleep $SLEEP
+                URL=$(oc -n {{ .Values.global.namespace }} get agentclusterinstalls.extensions.hive.openshift.io aci-{{ .Values.global.name }} -o=jsonpath="{.status.debugInfo.eventsURL}")
+                URL_READY=$(echo $URL | awk -F ":" '{print $1}')
+              done
+              INSTALL_STATUS="Waiting for install to complete"
+              while :
+              do
+                echo "Waiting for the cluster to complete installation. ($INSTALL_STATUS)"
+                sleep $SLEEP
+                INSTALL_STATUS=$( curl -s -k $URL | awk -F '"' '{print $(NF-5)}' )
+                if [ "$INSTALL_STATUS" = "Successfully completed installing cluster" ]
+                then break
+                fi
+              done
+              oc get secret -n {{ .Values.global.namespace }} cluster-{{ .Values.global.name }}-admin-kubeconfig -o jsonpath={.data.kubeconfig} | base64 -d > /tmp/kubeconfig
+              ARGOPW=$(oc get secret -n telco-gitops telco-gitops-cluster -o go-template='{{ "{{" }}index .data "admin.password"{{ "}}" }}' | base64 -d)
+              argocd --username=admin --password=$ARGOPW --insecure --config /tmp/config login telco-gitops-server-telco-gitops.apps.ocpsmc.lab.diktio.net
+              echo "#"              
+              if `argocd cluster list --config /tmp/config | egrep -q api.{{ .Values.global.name }}.{{ .Values.global.domain }}`; then
+                echo FOUND!  Deleting
+                argocd cluster rm --config /tmp/config  https://api.{{ .Values.global.name }}.{{ .Values.global.domain }}:6443
+              fi
+              echo "#"  
+              sleep $SLEEP      
+              argocd cluster add --config /tmp/config --kubeconfig /tmp/kubeconfig admin --name telco-ocptest
+              argocd logout --config /tmp/config admin
+              rm -f /tmp/kubeconfig /tmp/config 
+              echo "All done! Hooray!"
+
+
