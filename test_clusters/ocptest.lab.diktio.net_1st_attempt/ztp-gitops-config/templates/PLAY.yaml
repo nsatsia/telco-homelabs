@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.global.pattern }}-{{ .name }}
+  namespace: openshift-gitops
+  finalizers:
+  - argoproj.io/finalizer
+spec:
+  project: default
+  source:
+    repoURL: {{ coalesce .repoURL $.Values.global.repoURL }}
+    targetRevision: {{ coalesce .targetRevision $.Values.global.targetRevision }}
+    path: {{ default "common/site" .path }}
+    helm:
+      valueFiles:
+      - "{{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}/values-global.yaml"
+      - "{{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}/values-{{ .name }}.yaml"
+      parameters:
+      - name: global.repoURL
+        value: $ARGOCD_APP_SOURCE_REPO_URL
+      - name: global.targetRevision
+        value: $ARGOCD_APP_SOURCE_TARGET_REVISION
+      - name: global.namespace
+        value: $ARGOCD_APP_NAMESPACE
+      - name: global.pattern
+        value: {{ $.Values.global.pattern }}
+      - name: global.valuesDirectoryURL
+        value: {{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}
+      {{- range .helmOverrides }}
+      - name: {{ .name }}
+        value: {{ .value | quote }}
+      {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $.Values.global.pattern }}-{{ .name }}
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: route.openshift.io
+    kind: Route
+    jsonPointers:
+    - /status
