@@ -1,0 +1,33 @@
+apiVersion: local.storage.openshift.io/v1alpha1
+kind: LocalVolumeDiscovery
+metadata:
+  name: auto-discover-devices
+  namespace: openshift-local-storage
+spec:
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          # - key: ran.openshift.io/lso
+          #   operator: Exists
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            {{- range $.Values.nodes }}
+              {{- range . }}
+                {{- if eq .lso "true" }}
+              - {{ .name }}.{{ $.Values.global.name }}.{{ $.Values.global.domain }}
+                {{- end }}
+              {{- end }}
+            {{- end }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mirror-registry-config-map
+  namespace: {{ .Values.ai.namespace }}
+  labels:
+    app: assisted-service
+data:
+  ca-bundle.crt: {{ toYaml $.Values.global.ca | indent 2 }} 
+  blah.txt: "{{ printf "%s:%s" $.Values.ai.registry_user $.Values.ai.registry_password | b64enc  }}"
