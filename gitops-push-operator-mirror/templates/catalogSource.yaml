@@ -1,0 +1,8 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: redhat-operator-index
+  namespace: openshift-marketplace
+spec:
+  image: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/operator-mirror-nsatsia-redhat-operator-index:v4.8
+  sourceType: grpc

@@ -1,21 +1,63 @@
+Nov 23 22:12:13 random-hostname-2b060afd-7b7f-4461-9260-8ce15e9d05fe bootkube.sh[1651498]: Error: Error initializing source docker://
+
+quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75
+lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4819@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75
+
+-- Logs begin at Wed 2021-11-24 01:40:41 UTC, end at Wed 2021-11-24 01:48:25 UTC. --
+Nov 24 01:45:20 localhost systemd[1]: Starting Download the OpenShift Release Image...
+Nov 24 01:45:20 localhost release-image-download.sh[5887]: Pulling lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4817:4.8.17-x86_64...
+Nov 24 01:45:21 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 release-image-download.sh[5887]: 2b7ef6f0db6d53ba3b0a6da6a49eaa61d55032e82ec1ca4731453f671a61d6c3
+Nov 24 01:45:21 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: Started Download the OpenShift Release Image.
+Nov 24 01:45:34 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: Started Bootstrap a Kubernetes cluster.
+Nov 24 01:45:41 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[6804]: Moving OpenShift manifests in with the rest of them
+Nov 24 01:45:41 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[6804]: Rendering Cluster Version Operator Manifests...
+Nov 24 01:45:41 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[6804]: Rendering CEO Manifests...
+Nov 24 01:46:41 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[6804]: Error: Error initializing source docker://quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75: (Mirrors also failed: [lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4819@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75: Error reading manifest sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75 in lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4819: manifest unknown: manifest unknown]): quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75: error pinging docker registry quay.io: Get "https://quay.io/v2/": dial tcp 3.216.152.103:443: i/o timeout
+Nov 24 01:46:42 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Main process exited, code=exited, status=125/n/a
+Nov 24 01:46:42 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Failed with result 'exit-code'.
+Nov 24 01:46:47 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Service RestartSec=5s expired, scheduling restart.
+Nov 24 01:46:47 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Scheduled restart job, restart counter is at 1.
+Nov 24 01:46:47 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: Stopped Bootstrap a Kubernetes cluster.
+Nov 24 01:46:47 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: Started Bootstrap a Kubernetes cluster.
+Nov 24 01:46:53 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[10287]: Rendering CEO Manifests...
+Nov 24 01:47:53 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[10287]: Error: Error initializing source docker://quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75: (Mirrors also failed: [lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4819@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75: Error reading manifest sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75 in lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4819: manifest unknown: manifest unknown]): quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6b9e468ce0e16cfbb93ac1c5b81e57e3732c66c914e2bc67eab5e4f3da361b75: error pinging docker registry quay.io: Get "https://quay.io/v2/": dial tcp 44.197.21.192:443: i/o timeout
+Nov 24 01:47:53 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Main process exited, code=exited, status=125/n/a
+Nov 24 01:47:53 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Failed with result 'exit-code'.
+Nov 24 01:47:58 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Service RestartSec=5s expired, scheduling restart.
+Nov 24 01:47:58 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: bootkube.service: Scheduled restart job, restart counter is at 2.
+Nov 24 01:47:58 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: Stopped Bootstrap a Kubernetes cluster.
+Nov 24 01:47:58 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 systemd[1]: Started Bootstrap a Kubernetes cluster.
+Nov 24 01:48:04 random-hostname-c057f49a-5615-4438-9b5f-0fb477138fd8 bootkube.sh[13705]: Rendering CEO Manifests...
+~                                                                                                                                                                                                                                                                                
+~                                                                                                                                                                                                                                                                                
+~                                                                                                                                                                                                                                                                                
+~                                                                   
+
+rpc error: code = Unknown desc = Manifest generation error (cached): error converting YAML to JSON: yaml: line 2: did not find expected key
+
+
 global:
+  name: ocpmgmt
+  domain: lab.diktio.net
+  namespace: assisted-installer
+  # base_git_url: https://github.com/nsatsia/openshift-gitops.git
+  base_git_url: https://github.com/nsatsia/ocpmgmt.lab.diktio.net.git
+  base_git_path: management
+  values_directory_url: https://github.com/nsatsia/ocpmgmt.lab.diktio.net/raw/main/
   api_vip: 192.19.129.21
-  base_git_url: https://github.com/nsatsia/telco-homelabs.git
+  ingress_vip: 192.19.129.22
   clusternetwork: 10.128.0.0/14
   default_router: 192.19.129.254
   default_storage_class: "ocs-storagecluster-ceph-rbd"
+  # default_storage_class: "ocs-external-storagecluster-ceph-rbd"
   dns: 192.19.128.2
-  domain: lab.diktio.net
   imagesetref_name: "openshift-v4.8.17-mirror"
-  ingress_vip: 192.19.129.22
-  name: ocptest
-  namespace: assisted-installer
   pull_secret: pull-secret
   server: telco-gitops
   servernamespace: telco-gitops
   servicenetwork: 172.30.0.0/16
   pull_secret_name: pull-secret
-  pull_secret: '{"auths":{"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"lab-registry.ocpsmc.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"quay.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"registry.redhat.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"}}}'
+  pull_secret: '{"auths":{"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"quay.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"registry.redhat.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"}}}'
   ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'
   ca: |-
     -----BEGIN CERTIFICATE-----
@@ -60,9 +102,9 @@ lso:
 
 mirror:
   - name: openshift-v4.8.15-mirror
-    path: lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4815:4.8.15-x86_64
+    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.15-x86_64
   - name: openshift-v4.8.17-mirror
-    path: lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4815:4.8.17-x86_64
+    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.17-x86_64
 
 quay:
   config: lab-quay-config-bundle
@@ -70,7 +112,7 @@ quay:
 ai: 
   namespace: "assisted-installer"
   service_config_name: "assisted-service-config"
-  registry_url: "lab-registry.ocpsmc.lab.diktio.net"
+  registry_url: "lab-registry.ocpmgmt.lab.diktio.net"
   registry_user: "nsatsia"
   registry_password: "Redhat01"
   controller_image: "quay.io/ocpmetal/assisted-installer-controller@sha256:1211c0ba22452388209169b1da0ea63421a42acd4a8885217444a0d559a0822a"

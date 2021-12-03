@@ -1,0 +1,55 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+ name: ztp-push-config-{{ $.Values.global.name }}-{{ $.Values.gitops.namespace }}
+ namespace: {{ $.Values.gitops.namespace }}
+spec:
+  generators:
+    - git:
+        repoURL: '{{ $.Values.global.base_ztp_url }}'
+        directories:
+          - path: clusters/*
+        revision: HEAD
+  template:
+    metadata:
+      name: 'ztp-push-config-{{ "{{" }}path.basename{{ "}}" }}'
+      namespace: {{ $.Values.gitops.namespace }}
+    spec:
+      destination:
+        namespace: {{ $.Values.gitops.namespace }}
+        server: 'https://kubernetes.default.svc'
+      project: default
+      source:
+        repoURL: '{{ $.Values.global.values_cluster_prefix_url }}/{{ "{{" }}path.basename{{ "}}" }}.git'
+        path: ztp/gitops-push-config
+        targetRevision: HEAD
+        helm:
+          valueFiles:
+          - "{{ $.Values.global.values_global_url }}/values.yaml"
+          - "{{ $.Values.global.values_cluster_prefix_url }}/{{ "{{" }}path.basename{{ "}}" }}/raw/main/values.yaml"
+      syncPolicy:
+        automated:
+          # Default prune is "false" 
+          prune: true
+          selfHeal: true 
+          # Allows deleting all application resources during automatic syncing ( false by default ).
+          allowEmpty: true
+        syncOptions:
+          # (equivalent to 'kubectl apply --validate=false')
+          - Validate=false
+          - CreateNamespace=true
+          # Supported policies are background, foreground and orphan.
+          - PrunePropagationPolicy=foreground
+          # Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
+          - PruneLast=true
+        retry:
+          # unlimited if less than 0
+          limit: -1
+          backoff:
+            # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+            duration: 1m
+            # a factor to multiply the base duration after each failed retry
+            factor: 2
+            # the maximum amount of time allowed for the backoff strategy
+            maxDuration: 3m
